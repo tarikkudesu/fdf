@@ -89,6 +89,11 @@ struct s_point
 
 
 /* FUNCTIONS */
+void	rotate_z(t_fdf *fdf);
+void	rotate_y(t_fdf *fdf);
+void	rotate_x(t_fdf *fdf);
+void	isometric(t_fdf *fdf);
+void	set_coordinnates(t_fdf *fdf);
 void 		print_color_map(t_fdf *fdf);
 void 		print_map(t_fdf *fdf);
 void		print_it(t_fdf *fdf);
