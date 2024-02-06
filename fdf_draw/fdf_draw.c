@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 11:17:19 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:27:14 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,140 +21,166 @@ void	my_mlx_pixel_put(int x, int y, t_fdf *fdf)
 		addr[y * fdf->img->line_bytes + x] = fdf->color;
 }
 
+void	rotate_z(t_fdf *fdf)
+{
+	float	tmp;
+
+	tmp = fdf->a->x;
+	fdf->a->x = tmp * cos(fdf->gamma) - fdf->a->y * sin(fdf->gamma);
+	fdf->a->y = tmp * sin(fdf->gamma) + fdf->a->y * cos(fdf->gamma);
+	tmp = fdf->b->x;
+	fdf->b->x = tmp * cos(fdf->gamma) - fdf->b->y * sin(fdf->gamma);
+	fdf->b->y = tmp * sin(fdf->gamma) + fdf->b->y * cos(fdf->gamma);
+}
+
+void	rotate_y(t_fdf *fdf)
+{
+	float	tmp;
+
+	tmp = fdf->a->x;
+	fdf->a->x = tmp * cos(fdf->tetha) - fdf->a->z * sin(fdf->tetha);
+	fdf->a->z = - tmp * sin(fdf->tetha) + fdf->a->z * cos(fdf->tetha);
+	tmp = fdf->b->x;
+	fdf->b->x = tmp * cos(fdf->tetha) - fdf->b->z * sin(fdf->tetha);
+	fdf->b->z = - tmp * sin(fdf->tetha) + fdf->b->z * cos(fdf->tetha);
+}
+
+void	rotate_x(t_fdf *fdf)
+{
+	float	tmp;
+
+	tmp = fdf->a->y;
+	fdf->a->y = tmp * cos(fdf->alpha) - fdf->a->z * sin(fdf->alpha);
+	fdf->a->z = tmp * sin(fdf->alpha) + fdf->a->z * cos(fdf->alpha);
+	tmp = fdf->b->y;
+	fdf->b->y = tmp * cos(fdf->alpha) - fdf->b->z * sin(fdf->alpha);
+	fdf->b->z = tmp * sin(fdf->alpha) + fdf->b->z * cos(fdf->alpha);
+}
+
 void	isometric(t_fdf *fdf)
 {
-	float	o_x1;
-	float	o_x2;
+	float	tmp;
 
-	o_x1 = fdf->line->x1;
-	fdf->line->x1 = (fdf->line->x1 - fdf->line->y1) / 2;
-	fdf->line->y1 = (o_x1 + fdf->line->y1) / 2 - fdf->line->z1;
-	o_x2 = fdf->line->x2;
-	fdf->line->x2 = (fdf->line->x2 - fdf->line->y2) / 2;
-	fdf->line->y2 = (o_x2 + fdf->line->y2) / 2 - fdf->line->z2;
+	tmp = fdf->a->x;
+	fdf->a->x = (tmp - fdf->a->y) * cos(0.523599);
+	fdf->a->y = (tmp + fdf->a->y) * sin(0.523599);
+	tmp = fdf->b->x;
+	fdf->b->x = (tmp - fdf->b->y) * cos(0.523599);
+	fdf->b->y = (tmp + fdf->b->y) * sin(0.523599);
 }
 
 void	set_coordinnates(t_fdf *fdf)
 {
-	fdf->line->x1 *= fdf->x_zoom;
-	fdf->line->x2 *= fdf->x_zoom;
-	fdf->line->y1 *= fdf->y_zoom;
-	fdf->line->y2 *= fdf->y_zoom;
-	// fdf->line->z1 *= fdf->z_zoom;
-	// fdf->line->z2 *= fdf->z_zoom;
-	// isometric(fdf);
-	fdf->line->x1 += fdf->x_offset;
-	fdf->line->x2 += fdf->x_offset;
-	fdf->line->y1 += fdf->y_offset;
-	fdf->line->y2 += fdf->y_offset;
+	(void)fdf;
+	fdf->a->x *= fdf->x_zoom;
+	fdf->b->x *= fdf->x_zoom;
+	fdf->a->y *= fdf->y_zoom;
+	fdf->b->y *= fdf->y_zoom;
+	rotate_z(fdf);
+	rotate_y(fdf);
+	rotate_x(fdf);
+	isometric(fdf);
+	fdf->a->x += fdf->x_offset;
+	fdf->b->x += fdf->x_offset;
+	fdf->a->y += fdf->y_offset;
+	fdf->b->y += fdf->y_offset;
 }
 
-void swap_2(t_line *line)
-{
-	int	x1;
-	int	y1;
-	
-	x1 = line->x1;
-	line->x1 = line->x2;
-	line->x2 = x1;
-	y1 = line->y1;
-	line->y1 = line->y2;
-	line->y2 = y1;
-}
-void swap_(t_line *line)
-{
-    int temp = line->x1;
-    line->x1 = line->y1;
-    line->y1 = temp;
-    temp = line->x2;
-    line->x2 = line->y2;
-    line->y2 = temp;
-}
-
-void	draw_line(int x2, int y2, t_fdf *fdf)
-{
-	fdf->line->x2 = x2;
-	fdf->line->y2 = y2;
-	fdf->line->z2 = fdf->map[y2][x2];
-	set_coordinnates(fdf);
-
-    if (abs(fdf->line->y2 - fdf->line->y1) > abs(fdf->line->x2 - fdf->line->x1)) {
-        swap_(fdf->line);
-    }
-
-    if (fdf->line->x1 > fdf->line->x2) {
-		swap_2(fdf->line);
-    }
-
-    int dx = fdf->line->x2 - fdf->line->x1;
-    int dy = fdf->line->y2 - fdf->line->y1;
-    float gradient = (float)dy / (float)dx;
-
-    float error = -0.5;
-
-    for (int x = fdf->line->x1; x <= fdf->line->x2; x++) {
-        int y = (int)(fdf->line->y1 + error);
-        my_mlx_pixel_put(x, y, fdf);
-        error += gradient;
-    }
-}
-
-// void	draw_line(int x2, int y2, t_fdf *fdf)
+// void	draw_line(t_fdf *fdf)
 // {
-// 	float	x_step;
-// 	float	y_step;
-// 	float	max;
-	
-// 	fdf->line->x2 = x2;
-// 	fdf->line->y2 = y2;
-// 	fdf->line->z2 = fdf->map[y2][x2];
 // 	set_coordinnates(fdf);
-// 	x_step = fdf->line->x2 - fdf->line->x1;
-// 	y_step = fdf->line->y2 - fdf->line->y1;
-// 	max = max_value(abs_float_value(x_step), abs_float_value(y_step));
-// 	x_step /= max;
-// 	y_step /= max;
-// 	printf("=================\n");
-// 	while (1)
-// 	{
-// 		printf("(%.1f, %.1f) => (%.1f, %.1f)\n", fdf->line->x1, fdf->line->y1, fdf->line->x2, fdf->line->y2);
-// 		my_mlx_pixel_put(fdf->line->x1, fdf->line->y1, fdf);
-// 		if ((int)fdf->line->x1 == (int)fdf->line->x2)
-// 			break ;
-// 		if ((int)fdf->line->y1 == (int)fdf->line->y2)
-// 			break ;
-// 		fdf->line->x1 += x_step;
-// 		fdf->line->y1 += y_step;
-// 	}
+//     if (abs(fdf->line->y2 - fdf->line->y1) > abs(fdf->line->x2 - fdf->line->x1)) {
+//         swap_(fdf->line);
+//     }
+
+//     if (fdf->line->x1 > fdf->line->x2) {
+// 		swap_2(fdf->line);
+//     }
+
+//     int dx = fdf->line->x2 - fdf->line->x1;
+//     int dy = fdf->line->y2 - fdf->line->y1;
+//     float gradient = (float)dy / (float)dx;
+
+//     float error = -0.5;
+
+//     for (int x = fdf->line->x1; x <= fdf->line->x2; x++) {
+//         int y = (int)(fdf->line->y1 + error);
+//         my_mlx_pixel_put(x, y, fdf);
+//         error += gradient;
+//     }
 // }
+
+void	draw_line(t_fdf *fdf)
+{
+	float	x_step;
+	float	y_step;
+	float	max;
+	int		x_bool;
+	int		y_bool;
+	
+	set_coordinnates(fdf);
+	x_bool = 0;
+	y_bool = 0;
+	x_step = fdf->b->x - fdf->a->x;
+	if (x_step == 0)
+		x_bool = 1;
+	y_step = fdf->b->y - fdf->a->y;
+	if (y_step == 0)
+		y_bool = 1;
+	max = max_value(abs_float_value(x_step), abs_float_value(y_step));
+	x_step /= max;
+	y_step /= max;
+	printf("(%d, %d) => (%d, %d)\n", (int)fdf->a->x, (int)fdf->a->y, (int)fdf->b->x, (int)fdf->b->x);
+	while (1)
+	{
+		my_mlx_pixel_put(fdf->a->x, fdf->a->y, fdf);
+		if (!x_bool)
+			if ((int)fdf->a->x == (int)fdf->b->x)
+				break ;
+		if (!y_bool)
+			if ((int)fdf->a->y == (int)fdf->b->y)
+				break ;
+		fdf->a->x += x_step;
+		fdf->a->y += y_step;
+	}
+}
 
 void	draw_map(t_fdf *fdf)
 {
-	t_line	line;
+	t_point	a;
+	t_point	b;
 	int		x;
 	int		y;
 
 	design_img(fdf);
-	fdf->line = &line;
+	fdf->a = &a;
+	fdf->b = &b;
 	x = -1;
 	while (++x < fdf->width)
 	{
 		y = -1;
 		while (++y < fdf->height)
 		{
-			line.x1 = x;
-			line.y1 = y;
-			line.z1 = fdf->map[y][x];
+			a.x = x;
+			a.y = y;
+			a.z = fdf->map[y][x];
+			b.x = x + 1;
+			b.y = y;
+			b.z = fdf->map[y][x];
 			if (x + 1 < fdf->width)
-				draw_line(x + 1, y, fdf);
-			line.x1 = x;
-			line.y1 = y;
-			line.z1 = fdf->map[y][x];
+				draw_line(fdf);
+			a.x = x;
+			a.y = y;
+			a.z = fdf->map[y][x];
+			b.x = x;
+			b.y = y + 1;
+			b.z = fdf->map[y][x];
 			if (y + 1 < fdf->height)
-				draw_line(x, y + 1, fdf);
+				draw_line(fdf);
 		}
 	}
 }
+
 // void	draw_map(t_fdf *fdf)
 // {
 // 	t_line	line;

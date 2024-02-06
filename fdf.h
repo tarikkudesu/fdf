@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 11:18:35 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:03:06 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ struct s_fdf
 	int		**map;
 	int		**color_map;
 	int		color;
+	float	alpha;
+	float	tetha;
 	float	gamma;
 	int		y_zoom;
 	int		x_zoom;
@@ -62,7 +64,8 @@ struct s_fdf
 	void	*mlx;
 	void	*win;
 	t_img	*img;
-	t_line	*line;
+	t_point	*a;
+	t_point	*b;
 };
 
 struct s_img
@@ -76,19 +79,9 @@ struct s_img
 
 struct s_point
 {
-	int	x;
-	int	y;
-	int	z;	
-};
-
-struct s_line
-{
-	int	x1;
-	int	y1;
-	int	x2;
-	int	y2;
-	int	z1;
-	int	z2;
+	float	x;
+	float	y;
+	float	z;	
 };
 
 // remove this
@@ -120,7 +113,7 @@ int			ft_atoi(const char *str);
 int			ft_atoi_base(char *line);
 void		read_file(char *file_name, t_fdf *fdf);
 int			get_width(char *file_name);
-int			word_count(char *line, char c);
+int			word_count(char *line);
 int			get_height(char *file_name);
 int			check_filename(char *s);
 void		free_struct(t_fdf *fdf);

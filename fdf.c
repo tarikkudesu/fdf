@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 10:25:56 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:28:32 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	fdf->x_offset = 600;
 	fdf->y_offset = 100;
 	fdf->color = 0x76EFF0;
-	fdf->gamma = 0.663599;
+	fdf->gamma = 0;
+	fdf->alpha = 0;
+	fdf->tetha = 0;
 }
 
 int	main(int ac, char **av)

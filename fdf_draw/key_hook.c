@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/05 18:03:01 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/06 20:16:09 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int	handle_key(int key, void *f)
 		exit(0);
 	if (key == 69)
 	{
-		fdf->x_zoom += 1;
-		fdf->y_zoom += 1;
-		fdf->z_zoom += 1;
+		fdf->x_zoom += 10;
+		fdf->y_zoom += 10;
+		fdf->z_zoom += 10;
 	}
 	if (key == 78)
 	{
-		fdf->x_zoom -= 1;
-		fdf->y_zoom -= 1;
-		fdf->z_zoom -= 1;
+		fdf->x_zoom -= 10;
+		fdf->y_zoom -= 10;
+		fdf->z_zoom -= 10;
 	}
 	if (key == 126)
 		fdf->y_offset -= 10;
@@ -43,9 +43,17 @@ int	handle_key(int key, void *f)
 	if (key == 123)
 		fdf->x_offset -= 10;
 	if (key == 6)
-		fdf->gamma += 0.1;
+		fdf->gamma += 0.01;
 	if (key == 7)
-		fdf->gamma -= 0.1;
+		fdf->gamma -= 0.01;
+	if (key == 0)
+		fdf->alpha += 0.01;
+	if (key == 1)
+		fdf->alpha -= 0.01;
+	if (key == 12)
+		fdf->tetha += 0.01;
+	if (key == 13)
+		fdf->tetha -= 0.01;
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	draw_map(fdf);
 	(void)fdf;

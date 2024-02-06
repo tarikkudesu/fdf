@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:39:32 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 10:13:46 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/06 18:27:08 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void print_map(t_fdf *fdf)
 
 void	print_it(t_fdf *fdf)
 {
+	printf("width : %d, height : %d\n", fdf->width, fdf->height);
 	print_color_map(fdf);
-	printMatrix(fdf, fdf->width / 2, fdf->height / 2);
-	// print_map(fdf);
-	// printf("zoom : %d\ncolor : %x\nx_offset : %d\ny_offset : %d\n", fdf->zoom, fdf->color, fdf->x_offset, fdf->y_offset);
+	print_map(fdf);
 }
