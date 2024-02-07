@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:26:46 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 17:42:25 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 20:37:47 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,19 @@ void	slope_bigger_than_one(int dx, int dy, t_fdf *fdf)
 
 void	draw_line(t_fdf *fdf)
 {
-    int dx;
-    int dy;
+	int dx;
+	int dy;
 
 	fdf->a->z = fdf->map[(int)fdf->a->y][(int)fdf->a->x];
 	fdf->b->z = fdf->map[(int)fdf->b->y][(int)fdf->b->x];
 	set_coordinnates(fdf);
-    dx = fdf->b->x - fdf->a->x;
-    dy = fdf->b->y - fdf->a->y;
-    my_mlx_pixel_put(fdf->a->x, fdf->a->y, fdf);
-    if (abs(dx) > abs(dy))
+	if (fdf->a->z < 0 || fdf->b->z < 0)
+		printf("%d, %d\n", fdf->a->z, fdf->a->z);
+	dx = fdf->b->x - fdf->a->x;
+	dy = fdf->b->y - fdf->a->y;
+	my_mlx_pixel_put(fdf->a->x, fdf->a->y, fdf);
+	if (abs(dx) > abs(dy))
 		slope_less_then_one(dx, dy, fdf);
-    else
+	else
 		slope_bigger_than_one(dx, dy, fdf);
 }

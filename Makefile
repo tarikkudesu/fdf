@@ -6,13 +6,13 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/07 14:31:45 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/07 20:00:54 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	fdf.c fdf_utils.c fdf_parc.c fdf_map.c error.c \
 			libft/libft.c libft/get_next_line.c libft/get_next_line_utils.c \
-			fdf_draw/fdf_draw.c fdf_draw/math.c fdf_draw/interface.c fdf_draw/key_hook.c fdf_draw/transform.c \
+			fdf_draw/fdf_draw.c fdf_draw/math.c fdf_draw/key_hook.c fdf_draw/transform.c \
 			fdf_draw/draw_line.c print.c
 
 GREEN		=	'\033[32m'

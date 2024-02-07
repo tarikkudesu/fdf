@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 17:57:25 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 20:02:36 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,6 @@ void	zoom(int key, t_fdf *fdf)
 	}
 }
 
-void	increment_z(int key, t_fdf *fdf)
-{
-	int i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	while(++i < fdf->height)
-	{
-		j = -1;
-		while(++j < fdf->width)
-		{
-			if (key == INCR_Z)
-				fdf->map[i][j] += 1;
-			if (key == DECR_Z)
-				fdf->map[i][j] -= 1;
-		}
-	}
-}
-
 int	handle_key(int key, void *f)
 {
 	t_fdf *fdf;
@@ -85,8 +65,6 @@ int	handle_key(int key, void *f)
 	fdf = f;
 	if (key == 53)
 		exit(0);
-	if (key == INCR_Z || key == DECR_Z)
-		increment_z(key, fdf);
 	if (key == ZOOM_IN || key == ZOOM_OUT)
 		zoom(key, fdf);
 	if (key == UP || key == DOWN || key == RIGHT || key == LEFT)
