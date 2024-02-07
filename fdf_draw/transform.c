@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 20:37:41 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 11:01:13 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	rotate_y(t_fdf *fdf)
 	float	tmp;
 
 	tmp = fdf->a->x;
-	fdf->a->x = tmp * cos(fdf->tetha) - fdf->a->z * sin(fdf->tetha);
+	fdf->a->x = tmp * cos(fdf->tetha) + fdf->a->z * sin(fdf->tetha);
 	fdf->a->z = - tmp * sin(fdf->tetha) + fdf->a->z * cos(fdf->tetha);
 	tmp = fdf->b->x;
-	fdf->b->x = tmp * cos(fdf->tetha) - fdf->b->z * sin(fdf->tetha);
+	fdf->b->x = tmp * cos(fdf->tetha) + fdf->b->z * sin(fdf->tetha);
 	fdf->b->z = - tmp * sin(fdf->tetha) + fdf->b->z * cos(fdf->tetha);
 }
 
@@ -54,18 +54,20 @@ void	isometric(t_fdf *fdf)
 
 	tmp = fdf->a->x;
 	fdf->a->x = (tmp - fdf->a->y) * cos(0.523599);
-	fdf->a->y = (tmp + fdf->a->y) * sin(0.523599);
+	fdf->a->y = (tmp + fdf->a->y) * sin(0.523599) - fdf->a->z;
 	tmp = fdf->b->x;
 	fdf->b->x = (tmp - fdf->b->y) * cos(0.523599);
-	fdf->b->y = (tmp + fdf->b->y) * sin(0.523599);
+	fdf->b->y = (tmp + fdf->b->y) * sin(0.523599) - fdf->b->z;
 }
 void	set_coordinnates(t_fdf *fdf)
 {
-	(void)fdf;
-	fdf->a->x *= fdf->x_zoom;
-	fdf->b->x *= fdf->x_zoom;
-	fdf->a->y *= fdf->y_zoom;
-	fdf->b->y *= fdf->y_zoom;
+	printf("(%d, %d, %d) => (%d, %d, %d)\n", (int)fdf->a->x, (int)fdf->a->y, (int)fdf->a->z, (int)fdf->b->x, (int)fdf->b->y, (int)fdf->b->z);
+	fdf->a->x *= fdf->zoom;
+	fdf->b->x *= fdf->zoom;
+	fdf->a->y *= fdf->zoom;
+	fdf->b->y *= fdf->zoom;
+	fdf->a->z *= fdf->zoom;
+	fdf->b->z *= fdf->zoom;
 	rotate_z(fdf);
 	rotate_y(fdf);
 	rotate_x(fdf);

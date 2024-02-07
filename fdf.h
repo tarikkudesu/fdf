@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 20:03:06 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 10:15:28 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ struct s_fdf
 	float	alpha;
 	float	tetha;
 	float	gamma;
-	int		y_zoom;
-	int		x_zoom;
+	int		zoom;
 	int		z_zoom;
 	int		x_offset;
 	int		y_offset;

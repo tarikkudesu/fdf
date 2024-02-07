@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 20:16:09 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 11:13:03 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@ int	handle_key(int key, void *f)
 		exit(0);
 	if (key == 69)
 	{
-		fdf->x_zoom += 10;
-		fdf->y_zoom += 10;
+		fdf->zoom += 10;
 		fdf->z_zoom += 10;
+		fdf->x_offset = WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
+		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
 	}
 	if (key == 78)
 	{
-		fdf->x_zoom -= 10;
-		fdf->y_zoom -= 10;
+		fdf->zoom -= 10;
 		fdf->z_zoom -= 10;
+		fdf->x_offset = WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
+		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
 	}
 	if (key == 126)
 		fdf->y_offset -= 10;

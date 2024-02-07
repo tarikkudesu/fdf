@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 20:28:32 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 11:14:11 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	read_file(file_name, fdf);
 	fdf->color_map = init_color_map(fdf);
 	fdf->map = get_map(fdf, file_name);
-	fdf->x_zoom = WIDTH / fdf->width;
-	fdf->y_zoom = WIDTH / fdf->width;
-	fdf->z_zoom = 50;
-	fdf->x_offset = 600;
-	fdf->y_offset = 100;
+	fdf->zoom = 10;
+	fdf->z_zoom = 5;
+	fdf->x_offset = WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
+	fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
 	fdf->color = 0x76EFF0;
 	fdf->gamma = 0;
 	fdf->alpha = 0;

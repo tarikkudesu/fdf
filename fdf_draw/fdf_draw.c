@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 20:39:40 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 10:13:19 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	draw_line(t_fdf *fdf)
 	int		x_bool;
 	int		y_bool;
 	
+	fdf->a->z = fdf->map[(int)fdf->a->y][(int)fdf->a->x];
+	fdf->b->z = fdf->map[(int)fdf->b->y][(int)fdf->b->x];
 	set_coordinnates(fdf);
 	x_bool = 0;
 	y_bool = 0;
@@ -65,7 +67,7 @@ void	draw_line(t_fdf *fdf)
 	max = max_value(abs_float_value(x_step), abs_float_value(y_step));
 	x_step /= max;
 	y_step /= max;
-	printf("(%d, %d) => (%d, %d)\n", (int)fdf->a->x, (int)fdf->a->y, (int)fdf->b->x, (int)fdf->b->x);
+	// printf("(%d, %d) => (%d, %d)\n", (int)fdf->a->x, (int)fdf->a->y, (int)fdf->b->x, (int)fdf->b->x);
 	while (1)
 	{
 		my_mlx_pixel_put(fdf->a->x, fdf->a->y, fdf);
@@ -84,10 +86,8 @@ void	set_point(int x, int y, t_fdf *fdf)
 {
 	fdf->a->x = x;
 	fdf->a->y = y;
-	fdf->a->z = fdf->map[y][x];
 	fdf->b->x = x;
 	fdf->b->y = y;
-	fdf->b->z = fdf->map[y][x];
 }
 
 void	draw_map(t_fdf *fdf)
