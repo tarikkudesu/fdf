@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 10:15:28 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 17:51:40 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,39 @@
 # include <errno.h>
 
 # define ERR_ARG	"Wrong number of arguments :\n"
-# define ERR_NAME	"Invalid map :\n"
+# define MLX_ADD	"mlx_get_data_addr error :\n"
 # define ERR_OPEN	"Error opening the file :\n"
 # define ERR_READ	"Error reading the file :\n"
-# define MLX_ADD	"mlx_get_data_addr error :\n"
 # define MLX_WIN	"mlx_new_window error :\n"
 # define MLX_IMG	"mlx_new_image error :\n"
 # define MLX_INIT	"mlx_init error :\n"
 # define ERR_MAL	"malloc error :\n"
+# define ERR_NAME	"Invalid map :\n"
 # define ERR_EMTY	"empty file :\n"
 # define MAIN_COLOR	"0x0A261E"
 # define LINE_COLOR	"0x76EFF0"
+# define ANGLE		0.523599
 # define WIDTH		1920
 # define HEIGHT		1080
 # define ESC		53
+# define ZOOM_IN	69
+# define ZOOM_OUT	78
 # define UP			126
 # define DOWN		125
 # define RIGHT		124
 # define LEFT		123
+# define INCR_Z		91
+# define DECR_Z		84
+# define R_X		0
+# define RR_X		1
+# define R_Z		6
+# define RR_Z		7
+# define R_Y		12
+# define RR_Y		13
 
 typedef struct s_fdf	t_fdf;
 typedef struct s_img	t_img;
+typedef struct s_ui		t_ui;
 typedef struct s_line	t_line;
 typedef struct s_point	t_point;
 
@@ -58,13 +70,20 @@ struct s_fdf
 	float	gamma;
 	int		zoom;
 	int		z_zoom;
-	int		x_offset;
-	int		y_offset;
+	float	x_offset;
+	float	y_offset;
 	void	*mlx;
 	void	*win;
 	t_img	*img;
 	t_point	*a;
 	t_point	*b;
+	t_ui	*ui;
+};
+
+struct s_ui
+{
+	void	*panel;
+	void	*intro;
 };
 
 struct s_img
@@ -78,9 +97,9 @@ struct s_img
 
 struct s_point
 {
-	float	x;
-	float	y;
-	float	z;	
+	int	x;
+	int	y;
+	int	z;	
 };
 
 // remove this
@@ -88,11 +107,13 @@ struct s_point
 
 
 /* FUNCTIONS */
-void	rotate_z(t_fdf *fdf);
-void	rotate_y(t_fdf *fdf);
-void	rotate_x(t_fdf *fdf);
-void	isometric(t_fdf *fdf);
-void	set_coordinnates(t_fdf *fdf);
+void		my_mlx_pixel_put(int x, int y, t_fdf *fdf);
+void		draw_line(t_fdf *fdf);
+void		rotate_z(t_fdf *fdf);
+void		rotate_y(t_fdf *fdf);
+void		rotate_x(t_fdf *fdf);
+void		isometric(t_fdf *fdf);
+void		set_coordinnates(t_fdf *fdf);
 void 		print_color_map(t_fdf *fdf);
 void 		print_map(t_fdf *fdf);
 void		print_it(t_fdf *fdf);

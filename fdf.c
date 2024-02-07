@@ -6,28 +6,11 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 11:14:11 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:32:32 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	get_zoom(t_fdf *fdf)
-{
-	if (fdf->width < 100)
-		return (10);
-	if (fdf->width < 200)
-		return (7);
-	if (fdf->width < 300)
-		return (6);
-	if (fdf->width < 400)
-		return (5);
-	if (fdf->width < 500)
-		return (4);
-	if (fdf->width < 600)
-		return (3);
-	return (2);
-}
 
 void	init_fdf(t_fdf *fdf, char *file_name)
 {
@@ -36,9 +19,9 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	read_file(file_name, fdf);
 	fdf->color_map = init_color_map(fdf);
 	fdf->map = get_map(fdf, file_name);
-	fdf->zoom = 10;
+	fdf->zoom = (WIDTH / fdf->width) / 3;
 	fdf->z_zoom = 5;
-	fdf->x_offset = WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
+	fdf->x_offset = 300 + WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
 	fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
 	fdf->color = 0x76EFF0;
 	fdf->gamma = 0;

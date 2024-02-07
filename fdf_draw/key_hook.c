@@ -6,59 +6,96 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 11:13:03 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 17:57:25 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void	translate(int key, t_fdf *fdf)
+{
+	if (key == UP)
+		fdf->y_offset -= 1;
+	if (key == DOWN)
+		fdf->y_offset += 1;
+	if (key == RIGHT)
+		fdf->x_offset += 1;
+	if (key == LEFT)
+		fdf->x_offset -= 1;
+}
+
+void	rotate(int key, t_fdf *fdf)
+{
+	if (key == R_Z)
+		fdf->gamma += 0.01;
+	if (key == RR_Z)
+		fdf->gamma -= 0.01;
+	if (key == R_X)
+		fdf->alpha += 0.01;
+	if (key == RR_X)
+		fdf->alpha -= 0.01;
+	if (key == R_Y)
+		fdf->tetha += 0.01;
+	if (key == RR_Y)
+		fdf->tetha -= 0.01;
+}
+
+void	zoom(int key, t_fdf *fdf)
+{
+	if (key == ZOOM_IN)
+	{
+		fdf->zoom += 1;
+		fdf->z_zoom += 1;
+		fdf->x_offset = 300 + WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
+		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
+	}
+	if (key == ZOOM_OUT)
+	{
+		fdf->zoom -= 1;
+		fdf->z_zoom -= 1;
+		fdf->x_offset = 300 + WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
+		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
+	}
+}
+
+void	increment_z(int key, t_fdf *fdf)
+{
+	int i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while(++i < fdf->height)
+	{
+		j = -1;
+		while(++j < fdf->width)
+		{
+			if (key == INCR_Z)
+				fdf->map[i][j] += 1;
+			if (key == DECR_Z)
+				fdf->map[i][j] -= 1;
+		}
+	}
+}
 
 int	handle_key(int key, void *f)
 {
 	t_fdf *fdf;
 
 	fdf = f;
-	mlx_clear_window(fdf->mlx, fdf->win);
-	draw_map(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	if (key == 53)
 		exit(0);
-	if (key == 69)
-	{
-		fdf->zoom += 10;
-		fdf->z_zoom += 10;
-		fdf->x_offset = WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
-		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
-	}
-	if (key == 78)
-	{
-		fdf->zoom -= 10;
-		fdf->z_zoom -= 10;
-		fdf->x_offset = WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
-		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
-	}
-	if (key == 126)
-		fdf->y_offset -= 10;
-	if (key == 125)
-		fdf->y_offset += 10;
-	if (key == 124)
-		fdf->x_offset += 10;
-	if (key == 123)
-		fdf->x_offset -= 10;
-	if (key == 6)
-		fdf->gamma += 0.01;
-	if (key == 7)
-		fdf->gamma -= 0.01;
-	if (key == 0)
-		fdf->alpha += 0.01;
-	if (key == 1)
-		fdf->alpha -= 0.01;
-	if (key == 12)
-		fdf->tetha += 0.01;
-	if (key == 13)
-		fdf->tetha -= 0.01;
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	if (key == INCR_Z || key == DECR_Z)
+		increment_z(key, fdf);
+	if (key == ZOOM_IN || key == ZOOM_OUT)
+		zoom(key, fdf);
+	if (key == UP || key == DOWN || key == RIGHT || key == LEFT)
+		translate(key, fdf);
+	if (key == R_X || key == RR_X || key == R_Z || key == RR_Z || key == R_Y || key == RR_Y)
+		rotate(key, fdf);
 	draw_map(fdf);
-	(void)fdf;
-	printf("%d key is pressed\n", key);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->panel, 0, 0);
+	printf("%d\n", key);
 	return (0);
 }

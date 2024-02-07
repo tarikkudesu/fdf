@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 11:01:13 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/07 17:44:07 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ void	isometric(t_fdf *fdf)
 	float	tmp;
 
 	tmp = fdf->a->x;
-	fdf->a->x = (tmp - fdf->a->y) * cos(0.523599);
-	fdf->a->y = (tmp + fdf->a->y) * sin(0.523599) - fdf->a->z;
+	fdf->a->x = (tmp - fdf->a->y) * cos(ANGLE);
+	fdf->a->y = (tmp + fdf->a->y) * sin(ANGLE) - fdf->a->z;
 	tmp = fdf->b->x;
-	fdf->b->x = (tmp - fdf->b->y) * cos(0.523599);
-	fdf->b->y = (tmp + fdf->b->y) * sin(0.523599) - fdf->b->z;
+	fdf->b->x = (tmp - fdf->b->y) * cos(ANGLE);
+	fdf->b->y = (tmp + fdf->b->y) * sin(ANGLE) - fdf->b->z;
 }
+
 void	set_coordinnates(t_fdf *fdf)
 {
-	printf("(%d, %d, %d) => (%d, %d, %d)\n", (int)fdf->a->x, (int)fdf->a->y, (int)fdf->a->z, (int)fdf->b->x, (int)fdf->b->y, (int)fdf->b->z);
 	fdf->a->x *= fdf->zoom;
 	fdf->b->x *= fdf->zoom;
 	fdf->a->y *= fdf->zoom;
