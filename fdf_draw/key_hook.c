@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 20:02:36 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 10:27:18 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,45 @@
 void	translate(int key, t_fdf *fdf)
 {
 	if (key == UP)
-		fdf->y_offset -= 1;
+		fdf->y_translate -= 4;
 	if (key == DOWN)
-		fdf->y_offset += 1;
+		fdf->y_translate += 4;
 	if (key == RIGHT)
-		fdf->x_offset += 1;
+		fdf->x_translate += 4;
 	if (key == LEFT)
-		fdf->x_offset -= 1;
+		fdf->x_translate -= 4;
 }
 
 void	rotate(int key, t_fdf *fdf)
 {
-	if (key == R_Z)
-		fdf->gamma += 0.01;
-	if (key == RR_Z)
-		fdf->gamma -= 0.01;
-	if (key == R_X)
-		fdf->alpha += 0.01;
-	if (key == RR_X)
-		fdf->alpha -= 0.01;
-	if (key == R_Y)
-		fdf->tetha += 0.01;
-	if (key == RR_Y)
-		fdf->tetha -= 0.01;
+	if (fdf->iso && key == R_Z)
+		fdf->gamma += 0.05;
+	if (fdf->iso && key == RR_Z)
+		fdf->gamma -= 0.05;
+	if (fdf->iso && key == R_X)
+		fdf->alpha += 0.05;
+	if (fdf->iso && key == RR_X)
+		fdf->alpha -= 0.05;
+	if (fdf->iso && key == R_Y)
+		fdf->tetha += 0.05;
+	if (fdf->iso && key == RR_Y)
+		fdf->tetha -= 0.05;
 }
 
 void	zoom(int key, t_fdf *fdf)
 {
 	if (key == ZOOM_IN)
-	{
 		fdf->zoom += 1;
-		fdf->z_zoom += 1;
-		fdf->x_offset = 300 + WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
-		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
-	}
-	if (key == ZOOM_OUT)
-	{
+	if (key == ZOOM_OUT && fdf->zoom > 1)
 		fdf->zoom -= 1;
-		fdf->z_zoom -= 1;
-		fdf->x_offset = 300 + WIDTH / 2 - (fdf->width / 2) * fdf->zoom;
-		fdf->y_offset = HEIGHT / 2 - (fdf->height / 2) * fdf->zoom;
-	}
+}
+
+void	elevate(int key, t_fdf *fdf)
+{
+	if (key == INCR_Z)
+		fdf->z_zoom += 0.1;
+	else
+		fdf->z_zoom -= 0.1;
 }
 
 int	handle_key(int key, void *f)
@@ -71,9 +69,15 @@ int	handle_key(int key, void *f)
 		translate(key, fdf);
 	if (key == R_X || key == RR_X || key == R_Z || key == RR_Z || key == R_Y || key == RR_Y)
 		rotate(key, fdf);
+	if (key == INCR_Z || key == DECR_Z)
+		elevate(key, fdf);
+	if (!fdf->iso && (key == F_VIEW || key == T_VIEW || key == R_VIEW))
+		orthographic(key, fdf);
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->panel, 0, 0);
-	printf("%d\n", key);
+	if (fdf->iso)
+		mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->iso_panel, 0, 0);
+	else
+		mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->ortho_panel, 0, 0);
 	return (0);
 }

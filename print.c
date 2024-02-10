@@ -6,25 +6,11 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:39:32 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 18:27:08 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/09 19:25:57 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void printMatrix(t_fdf *fdf, int x, int y)
-{
-    if (x < 0 || x > fdf->width || y < 0 || y > fdf->height) 
-        return ;
-	
-    printf("%d ", fdf->map[y][x]);
-
-    printMatrix(fdf, x - 1, y);
-    printMatrix(fdf, x + 1, y);
-	printf("\n");
-    printMatrix(fdf, x, y - 1);
-    printMatrix(fdf, x, y + 1);
-}
 
 void print_color_map(t_fdf *fdf)
 {

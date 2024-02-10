@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 17:51:40 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 10:27:25 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,34 @@
 # define ANGLE		0.523599
 # define WIDTH		1920
 # define HEIGHT		1080
-# define ESC		53
-# define ZOOM_IN	69
-# define ZOOM_OUT	78
+
 # define UP			126
 # define DOWN		125
 # define RIGHT		124
 # define LEFT		123
+# define ESC		53
+# define ZOOM_IN	69
+# define ZOOM_OUT	78
 # define INCR_Z		91
 # define DECR_Z		84
-# define R_X		0
-# define RR_X		1
-# define R_Z		6
-# define RR_Z		7
-# define R_Y		12
-# define RR_Y		13
+# define R_Z		89
+# define RR_Z		92
+# define R_Y		86
+# define RR_Y		88
+# define R_X		83
+# define RR_X		85
+# define R_VIEW		15
+# define F_VIEW		3
+# define T_VIEW		17
+# define ISO		34
+# define ORTH		31
 
 typedef struct s_fdf	t_fdf;
 typedef struct s_img	t_img;
 typedef struct s_ui		t_ui;
 typedef struct s_line	t_line;
 typedef struct s_point	t_point;
+typedef struct s_p		t_p;
 
 struct s_fdf
 {
@@ -68,10 +75,13 @@ struct s_fdf
 	float	alpha;
 	float	tetha;
 	float	gamma;
+	int		iso;
 	int		zoom;
-	int		z_zoom;
-	float	x_offset;
-	float	y_offset;
+	float	z_zoom;
+	int		x_offset;
+	int		y_offset;
+	int		x_translate;
+	int		y_translate;
 	void	*mlx;
 	void	*win;
 	t_img	*img;
@@ -82,7 +92,8 @@ struct s_fdf
 
 struct s_ui
 {
-	void	*panel;
+	void	*iso_panel;
+	void	*ortho_panel;
 	void	*intro;
 };
 
@@ -97,16 +108,23 @@ struct s_img
 
 struct s_point
 {
-	int	x;
-	int	y;
-	int	z;	
+	int		x;
+	int		y;
+	float	z;
+};
+
+struct s_p
+{
+	int	w;
+	int	h;
 };
 
 // remove this
 # include <stdio.h>
 
-
 /* FUNCTIONS */
+void		orthographic(int key, t_fdf *fdf);
+int			handle_mouse(int button, int x, int y, void *param);
 void		my_mlx_pixel_put(int x, int y, t_fdf *fdf);
 void		draw_line(t_fdf *fdf);
 void		rotate_z(t_fdf *fdf);

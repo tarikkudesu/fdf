@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 20:05:27 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 10:27:07 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rotate_z(t_fdf *fdf)
 {
-	float	tmp;
+	int	tmp;
 
 	tmp = fdf->a->x;
 	fdf->a->x = tmp * cos(fdf->gamma) - fdf->a->y * sin(fdf->gamma);
@@ -26,7 +26,7 @@ void	rotate_z(t_fdf *fdf)
 
 void	rotate_y(t_fdf *fdf)
 {
-	float	tmp;
+	int	tmp;
 
 	tmp = fdf->a->x;
 	fdf->a->x = tmp * cos(fdf->tetha) + fdf->a->z * sin(fdf->tetha);
@@ -38,7 +38,7 @@ void	rotate_y(t_fdf *fdf)
 
 void	rotate_x(t_fdf *fdf)
 {
-	float	tmp;
+	int	tmp;
 
 	tmp = fdf->a->y;
 	fdf->a->y = tmp * cos(fdf->alpha) - fdf->a->z * sin(fdf->alpha);
@@ -50,7 +50,7 @@ void	rotate_x(t_fdf *fdf)
 
 void	isometric(t_fdf *fdf)
 {
-	float	tmp;
+	int	tmp;
 
 	tmp = fdf->a->x;
 	fdf->a->x = (tmp - fdf->a->y) * cos(ANGLE);
@@ -68,10 +68,13 @@ void	set_coordinnates(t_fdf *fdf)
 	fdf->b->y *= fdf->zoom;
 	fdf->a->z *= fdf->zoom;
 	fdf->b->z *= fdf->zoom;
-	rotate_z(fdf);
-	rotate_y(fdf);
 	rotate_x(fdf);
-	isometric(fdf);
+	rotate_y(fdf);
+	rotate_z(fdf);
+	if (fdf->iso)
+		isometric(fdf);
+	fdf->x_offset = 400 + (WIDTH - 400) / 2 + fdf->x_translate;
+	fdf->y_offset = HEIGHT / 2 + fdf->y_translate;
 	fdf->a->x += fdf->x_offset;
 	fdf->b->x += fdf->x_offset;
 	fdf->a->y += fdf->y_offset;

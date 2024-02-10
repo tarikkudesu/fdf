@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:14:41 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/06 18:33:19 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 10:13:25 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,21 @@ int	get_height(char *file_name)
 
 int	word_count(char *line)
 {
-	int	bool;
-	int	count;
+	int	i;
 
-	bool = 0;
-	count = 0;
-	while (*line)
+	i = 0;
+	while (*line && *line != '\n')
 	{
-		if (*line == ' ' && bool == 1)
+		while (*line && *line != '\n' && *line == ' ')
+			line++;
+		if (*line  && *line != '\n')
 		{
-			bool = 0;
-			count++;
+			i++;
+			while (*line && *line != '\n' && *line != ' ')
+				line++;
 		}
-		else if (*line != ' ')
-			bool = 1;
-		line++;
 	}
-	return (count);
+	return (i);
 }
 
 int	get_width(char *file_name)
@@ -93,7 +91,6 @@ int	get_width(char *file_name)
 		return (width);
 	}
 	width = word_count(line);
-	printf("%d\n", width);
 	(free(line), close(fd));
 	return (width);
 }

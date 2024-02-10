@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/07 18:01:02 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/09 17:42:13 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	draw_map(t_fdf *fdf)
 		y = -1;
 		while (++y < fdf->height)
 		{
-			set_point(x, y, fdf);
+			set_point(x - fdf->width / 2, y - fdf->height / 2, fdf);
 			b.x += 1;
 			if (x + 1 < fdf->width)
 				draw_line(fdf);
-			set_point(x, y, fdf);
+			set_point(x - fdf->width / 2, y - fdf->height / 2, fdf);
 			b.y += 1;
 			if (y + 1 < fdf->height)
 				draw_line(fdf);
@@ -62,6 +62,15 @@ void	design_img(t_fdf *fdf)
 		while (++j < WIDTH)
 			addr[i * WIDTH + j] = 0x071021;
 	}
+	if (!fdf->iso)
+	{
+		i = 399;
+		while (++i < WIDTH)
+			addr[(HEIGHT / 2) * WIDTH + i] = 0xffffff;
+		i = -1;
+		while (++i < HEIGHT)
+			addr[i * WIDTH + 400 + (WIDTH - 400) / 2] = 0xffffff;
+	}
 }
 
 void	fill_image(t_fdf *fdf)
@@ -76,19 +85,22 @@ void	fill_image(t_fdf *fdf)
 
 void	panel(t_fdf *fdf)
 {
-	int		p_h;
-	int		p_w;
-	int		i_h;
-	int		i_w;
+	t_p	iso;
+	t_p	ortho;
+	t_p	intro;
 
 	fdf->ui->intro = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
 	if (!fdf->ui->intro)
 		(free_struct(fdf), ft_putstr_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->ui->panel = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	if (!fdf->ui->panel)
+	fdf->ui->iso_panel = mlx_new_image(fdf->mlx, 400, HEIGHT);
+	if (!fdf->ui->iso_panel)
 		(free_struct(fdf), ft_putstr_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->ui->panel  = mlx_xpm_file_to_image(fdf->mlx, "assets/panel.xpm", &p_h, &p_w);
-	fdf->ui->intro  = mlx_xpm_file_to_image(fdf->mlx, "assets/fdf.xpm", &i_h, &i_w);
+	fdf->ui->ortho_panel = mlx_new_image(fdf->mlx, 400, HEIGHT);
+	if (!fdf->ui->ortho_panel)
+		(free_struct(fdf), ft_putstr_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
+	fdf->ui->iso_panel  = mlx_xpm_file_to_image(fdf->mlx, "assets/iso_panel.xpm", &iso.h, &iso.w);
+	fdf->ui->ortho_panel  = mlx_xpm_file_to_image(fdf->mlx, "assets/ortho_panel.xpm", &ortho.h, &ortho.w);
+	fdf->ui->intro  = mlx_xpm_file_to_image(fdf->mlx, "assets/fdf.xpm", &intro.h, &intro.w);
 }
 
 
@@ -111,6 +123,7 @@ void	make_it_3d(t_fdf *fdf)
 	panel(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->intro, 0, 0);
 	fill_image(fdf);
-	mlx_key_hook(fdf->win, &handle_key, fdf);
+	mlx_hook(fdf->win, 2, 0, &handle_key, fdf);
+	mlx_mouse_hook(fdf->win, &handle_mouse, fdf);
 	mlx_loop(fdf->mlx);
 }
