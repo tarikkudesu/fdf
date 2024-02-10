@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:06:18 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:24:30 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	if (!check_filename(file_name))
 		(ft_putstr_fd(ERR_ARG, 2), exit(1));
 	read_file(file_name, fdf);
-	fdf->color_map = init_color_map(fdf);
 	fdf->map = get_map(fdf, file_name);
 	fdf->zoom = (WIDTH / fdf->width) / 3;
 	fdf->z_zoom = 1;

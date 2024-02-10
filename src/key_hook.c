@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:06:03 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:28:07 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	elevate(int key, t_fdf *fdf)
 
 int	handle_key(int key, void *f)
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 
 	fdf = f;
 	if (key == 53)
@@ -67,7 +67,8 @@ int	handle_key(int key, void *f)
 		zoom(key, fdf);
 	if (key == UP || key == DOWN || key == RIGHT || key == LEFT)
 		translate(key, fdf);
-	if (key == R_X || key == RR_X || key == R_Z || key == RR_Z || key == R_Y || key == RR_Y)
+	if (key == R_X || key == RR_X || key == R_Z || key == RR_Z \
+	|| key == R_Y || key == RR_Y)
 		rotate(key, fdf);
 	if (key == INCR_Z || key == DECR_Z)
 		elevate(key, fdf);

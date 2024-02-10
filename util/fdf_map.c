@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:38:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:36:33 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:31:44 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,6 @@ int	*get_row(t_fdf *fdf, char *line)
 	return (row);
 }
 
-void	get_color_row(t_fdf *fdf, char *line, int j)
-{
-	int	i;
-	
-	i = -1;
-	while (++i < fdf->width)
-	{
-		while (*line && ft_isdigit(*line))
-			line++;
-		if (*line == ',')
-		{
-			line++;
-			fdf->color_map[j][i] = ft_atoi_base(line);
-			while (*line && *line != ' ')
-				line++;
-		}
-		while (*line && *line == ' ')
-			line++;
-	}
-}
-
 int	**fill_map(t_fdf *fdf, int fd, int **map)
 {
 	int		i;
@@ -69,7 +48,6 @@ int	**fill_map(t_fdf *fdf, int fd, int **map)
 		*(map + i) = get_row(fdf, line);
 		if (!*(map + i))
 			(free_struct(fdf), ft_putstr_fd(ERR_MAL, 2), exit(EXIT_FAILURE));
-		get_color_row(fdf, line, i);
 		free(line);
 	}
 	return (map);
@@ -94,7 +72,7 @@ int	**get_map(t_fdf *fdf, char *file_name)
 int	**init_color_map(t_fdf *fdf)
 {
 	int		**color_map;
-	int 	i;
+	int		i;
 	int		j;
 
 	i = -1;

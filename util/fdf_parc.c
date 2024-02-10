@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:14:41 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:36:40 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:30:38 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	check_filename(char *s)
 		return (1);
 	return (0);
 }
+
 int	get_height(char *file_name)
 {
 	char	*line;
@@ -64,7 +65,7 @@ int	word_count(char *line)
 	{
 		while (*line && *line != '\n' && *line == ' ')
 			line++;
-		if (*line  && *line != '\n')
+		if (*line && *line != '\n')
 		{
 			i++;
 			while (*line && *line != '\n' && *line != ' ')

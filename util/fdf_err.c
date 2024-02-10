@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_error.c                                        :+:      :+:    :+:   */
+/*   fdf_err.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:00:02 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:36:37 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:20:09 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	free_struct(t_fdf *fdf)
 {
 	if (fdf->map)
 		free_array(fdf->map);
-	if (fdf->color_map)
-		free_array(fdf->color_map);
 }
 
 void	free_array(int **array)

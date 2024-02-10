@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:05:56 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:27:02 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	design_img(t_fdf *fdf)
 	{
 		i = 399;
 		while (++i < WIDTH)
-			addr[(HEIGHT / 2) * WIDTH + i] = 0xffffff;
+			addr[(HEIGHT / 2) * WIDTH + i] = 0xe2f3f5;
 		i = -1;
 		while (++i < HEIGHT)
-			addr[i * WIDTH + 400 + (WIDTH - 400) / 2] = 0xffffff;
+			addr[i * WIDTH + 400 + (WIDTH - 400) / 2] = 0xe2f3f5;
 	}
 }
 
@@ -98,8 +98,10 @@ void	panel(t_fdf *fdf)
 	fdf->ui->ortho_panel = mlx_new_image(fdf->mlx, 400, HEIGHT);
 	if (!fdf->ui->ortho_panel)
 		(free_struct(fdf), ft_putstr_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->ui->iso_panel  = mlx_xpm_file_to_image(fdf->mlx, "assets/iso_panel.xpm", &iso.h, &iso.w);
-	fdf->ui->ortho_panel  = mlx_xpm_file_to_image(fdf->mlx, "assets/ortho_panel.xpm", &ortho.h, &ortho.w);
-	fdf->ui->intro  = mlx_xpm_file_to_image(fdf->mlx, "assets/fdf.xpm", &intro.h, &intro.w);
+	fdf->ui->iso_panel = mlx_xpm_file_to_image(fdf->mlx, \
+	"assets/iso_panel.xpm", &iso.h, &iso.w);
+	fdf->ui->ortho_panel = mlx_xpm_file_to_image(fdf->mlx, \
+	"assets/ortho_panel.xpm", &ortho.h, &ortho.w);
+	fdf->ui->intro = mlx_xpm_file_to_image(fdf->mlx, "assets/fdf.xpm", \
+	&intro.h, &intro.w);
 }
-

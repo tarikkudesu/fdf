@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:00:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:05:59 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:27:46 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	orthographic(int key, t_fdf *fdf)
 		fdf->gamma = 0;
 		fdf->tetha = 0;
 		fdf->alpha = 0;
-		
 	}
 	else if (key == R_VIEW)
 	{
@@ -81,7 +80,7 @@ void	orthographic_view(t_fdf *fdf)
 
 int	handle_mouse(int button, int x, int y, void *param)
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
 	if (button == 1 && x > 100 && x < 300 && y > 980 && y < 1030)

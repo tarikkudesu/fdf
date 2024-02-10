@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 11:06:08 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:28:56 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	rotate_y(t_fdf *fdf)
 
 	tmp = fdf->a->x;
 	fdf->a->x = tmp * cos(fdf->tetha) + fdf->a->z * sin(fdf->tetha);
-	fdf->a->z = - tmp * sin(fdf->tetha) + fdf->a->z * cos(fdf->tetha);
+	fdf->a->z = fdf->a->z * cos(fdf->tetha) - tmp * sin(fdf->tetha);
 	tmp = fdf->b->x;
 	fdf->b->x = tmp * cos(fdf->tetha) + fdf->b->z * sin(fdf->tetha);
-	fdf->b->z = - tmp * sin(fdf->tetha) + fdf->b->z * cos(fdf->tetha);
+	fdf->b->z = fdf->b->z * cos(fdf->tetha) - tmp * sin(fdf->tetha);
 }
 
 void	rotate_x(t_fdf *fdf)
@@ -53,11 +53,11 @@ void	isometric(t_fdf *fdf)
 	int	tmp;
 
 	tmp = fdf->a->x;
-	fdf->a->x = (tmp - fdf->a->y) * cos(ANGLE);
-	fdf->a->y = (tmp + fdf->a->y) * sin(ANGLE) - fdf->a->z;
+	fdf->a->x = (tmp - fdf->a->y) * cos(0.523599);
+	fdf->a->y = (tmp + fdf->a->y) * sin(0.523599) - fdf->a->z;
 	tmp = fdf->b->x;
-	fdf->b->x = (tmp - fdf->b->y) * cos(ANGLE);
-	fdf->b->y = (tmp + fdf->b->y) * sin(ANGLE) - fdf->b->z;
+	fdf->b->x = (tmp - fdf->b->y) * cos(0.523599);
+	fdf->b->y = (tmp + fdf->b->y) * sin(0.523599) - fdf->b->z;
 }
 
 void	set_coordinnates(t_fdf *fdf)
