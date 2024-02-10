@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 16:10:01 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 20:46:50 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@
 typedef struct s_fdf	t_fdf;
 typedef struct s_img	t_img;
 typedef struct s_ui		t_ui;
-typedef struct s_line	t_line;
 typedef struct s_point	t_point;
 typedef struct s_p		t_p;
 

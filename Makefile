@@ -6,20 +6,24 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/10 16:37:28 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/10 20:48:19 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	src/fdf_bonus.c src/fdf_image.c src/draw_line.c src/fdf_view.c src/transform.c src/key_hook.c \
-			libft/libft.c libft/gnl_1.c libft/gnl_2.c \
-			util/fdf_parc.c util/fdf_map.c util/fdf_util.c util/fdf_err.c
+SRC		=	mand/src/fdf.c mand/src/fdf_image.c mand/src/draw_line.c \
+			mand/libft/libft.c mand/libft/gnl_1.c mand/libft/gnl_2.c \
+			mand/util/fdf_parc.c mand/util/fdf_map.c mand/util/fdf_util.c mand/util/fdf_err.c
+
+SRC_B	=	bonus/src/fdf_bonus.c bonus/src/fdf_image.c bonus/src/draw_line.c bonus/src/fdf_view.c bonus/src/transform.c bonus/src/key_hook.c \
+			bonus/libft/libft.c bonus/libft/gnl_1.c bonus/libft/gnl_2.c \
+			bonus/util/fdf_parc.c bonus/util/fdf_map.c bonus/util/fdf_util.c bonus/util/fdf_err.c
 
 GREEN		=	'\033[32m'
 NONE		=	'\033[0m'
 CC			=	cc
 NAME		=	fdf
-HEADER		=	src/fdf_bonus.h
-OBJ			=	$(SRCS:.c=.o)
+HEADER		=	mand/src/fdf_bonus.h
+OBJ			=	$(SRC:.c=.o)
 CFLAGS		=	-Wall -Wextra -Werror
 MLXFLAGS	=	-I /usr/local/include -L /usr/local/lib  -lmlx -framework OpenGL -framework AppKit
 
@@ -31,7 +35,7 @@ all: $(NAME) clean
 	
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLXFLAGS)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLXFLAGS)~
 	@echo $(GREEN) "compilation done\n" $(NONE)
 
 clean:
