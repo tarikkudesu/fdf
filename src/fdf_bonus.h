@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 15:24:54 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 17:22:01 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ char		*read_to_nl(char *stat, int fd);
 char		*get_next_line(int fd);
 
 int			ft_isdigit(int c);
-void		ft_putstr_fd(char *s, int fd);
+void		ft_putendl_fd(char *s, int fd);
 int			ft_strcmp(char *s1, char *s2);
 
-void		free_struct(t_fdf *fdf);
+int			exit_program(void *f);
+void		destroy(t_fdf *fdf);
 void		free_array(int **array);
 int			*get_row(t_fdf *fdf, char *line);
-void		get_color_row(t_fdf *fdf, char *line, int j);
 int			**fill_map(t_fdf *fdf, int fd, int **map);
 int			**get_map(t_fdf *fdf, char *file_name);
 int			**init_color_map(t_fdf *fdf);

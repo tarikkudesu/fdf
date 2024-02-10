@@ -6,33 +6,34 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 15:27:24 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 16:10:01 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_STRUCT_H
 # define FDF_STRUCT_H
 
-# define ERR_ARG	"Wrong number of arguments :\n"
-# define MLX_ADD	"mlx_get_data_addr error :\n"
-# define ERR_OPEN	"Error opening the file :\n"
-# define ERR_READ	"Error reading the file :\n"
-# define MLX_WIN	"mlx_new_window error :\n"
-# define MLX_IMG	"mlx_new_image error :\n"
-# define MLX_INIT	"mlx_init error :\n"
-# define ERR_MAL	"malloc error :\n"
-# define ERR_NAME	"Invalid map :\n"
-# define ERR_EMTY	"empty file :\n"
+# define ERR_ARG	"Error : Wrong number of arguments"
+# define ERR_FILE	"Error : Wrong file "
+# define MLX_ADD	"Error : mlx_get_data_addr error"
+# define ERR_OPEN	"Error : Error opening the file"
+# define ERR_READ	"Error : Error reading the file"
+# define MLX_WIN	"Error : mlx_new_window error"
+# define MLX_IMG	"Error : mlx_new_image error"
+# define MLX_INIT	"Error : mlx_init error"
+# define ERR_MAL	"Error : malloc error"
+# define ERR_NAME	"Error : Invalid map"
+# define ERR_EMTY	"Error : empty file"
 # define MAIN_COLOR	"0x0A261E"
 # define LINE_COLOR	"0x76EFF0"
 # define WIDTH		1920
 # define HEIGHT		1080
 
+# define ESC		53
 # define UP			126
 # define DOWN		125
 # define RIGHT		124
 # define LEFT		123
-# define ESC		53
 # define ZOOM_IN	69
 # define ZOOM_OUT	78
 # define INCR_Z		91
@@ -46,8 +47,6 @@
 # define T_VIEW		17
 # define R_VIEW		15
 # define F_VIEW		3
-# define ISO		34
-# define ORTH		31
 
 typedef struct s_fdf	t_fdf;
 typedef struct s_img	t_img;

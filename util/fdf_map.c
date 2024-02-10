@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:38:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 15:31:44 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 16:42:04 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int	**fill_map(t_fdf *fdf, int fd, int **map)
 		j = -1;
 		line = get_next_line(fd);
 		if (!line)
-			(free_struct(fdf), ft_putstr_fd(ERR_READ, 2), exit(EXIT_FAILURE));
+			(free_array(map), close(fd), \
+			ft_putendl_fd(ERR_READ, 2), exit(EXIT_FAILURE));
 		*(map + i) = get_row(fdf, line);
 		if (!*(map + i))
-			(free_struct(fdf), ft_putstr_fd(ERR_MAL, 2), exit(EXIT_FAILURE));
+			(free_array(map), close(fd), \
+			ft_putendl_fd(ERR_MAL, 2), exit(EXIT_FAILURE));
 		free(line);
 	}
 	return (map);
@@ -60,34 +62,11 @@ int	**get_map(t_fdf *fdf, char *file_name)
 
 	map = malloc(sizeof(int *) * (fdf->height));
 	if (!map)
-		(free_struct(fdf), perror(ERR_MAL), exit(EXIT_FAILURE));
+		(perror(ERR_MAL), exit(EXIT_FAILURE));
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		(free_struct(fdf), perror(ERR_MAL), exit(EXIT_FAILURE));
+		(free(map), perror(ERR_OPEN), exit(EXIT_FAILURE));
 	map = fill_map(fdf, fd, map);
 	close(fd);
 	return (map);
-}
-
-int	**init_color_map(t_fdf *fdf)
-{
-	int		**color_map;
-	int		i;
-	int		j;
-
-	i = -1;
-	j = -1;
-	color_map = malloc(sizeof(int *) * fdf->height);
-	if (!color_map)
-		(perror(ERR_MAL), exit(EXIT_FAILURE));
-	while (++i < fdf->height)
-	{
-		j = -1;
-		*(color_map + i) = malloc(sizeof(int) * fdf->width);
-		if (!*(color_map + i))
-			(free_struct(fdf), perror(ERR_MAL), exit(EXIT_FAILURE));
-		while (++j < fdf->width)
-			*(*(color_map + i) + j) = 0xFFFFFF;
-	}
-	return (color_map);
 }
