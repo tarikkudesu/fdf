@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_draw.c                                         :+:      :+:    :+:   */
+/*   fdf_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/09 17:42:13 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:05:56 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf_bonus.h"
 
 void	set_point(int x, int y, t_fdf *fdf)
 {
@@ -103,27 +103,3 @@ void	panel(t_fdf *fdf)
 	fdf->ui->intro  = mlx_xpm_file_to_image(fdf->mlx, "assets/fdf.xpm", &intro.h, &intro.w);
 }
 
-
-void	make_it_3d(t_fdf *fdf)
-{
-	t_ui	ui;
-	t_img	img;
-
-	fdf->mlx = mlx_init();
-	if (!fdf->mlx)
-		(free_struct(fdf), ft_putstr_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
-	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf");
-	if (!fdf->win)
-		(free_struct(fdf), ft_putstr_fd(MLX_WIN, 2), exit(EXIT_FAILURE));
-	img.img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	if (!img.img)
-		(free_struct(fdf), ft_putstr_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->img = &img;
-	fdf->ui = &ui;
-	panel(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->intro, 0, 0);
-	fill_image(fdf);
-	mlx_hook(fdf->win, 2, 0, &handle_key, fdf);
-	mlx_mouse_hook(fdf->win, &handle_mouse, fdf);
-	mlx_loop(fdf->mlx);
-}

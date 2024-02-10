@@ -6,11 +6,11 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 10:27:07 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:06:08 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf_bonus.h"
 
 void	rotate_z(t_fdf *fdf)
 {

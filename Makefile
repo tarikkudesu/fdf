@@ -6,20 +6,19 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/09 16:40:41 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/10 11:40:08 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	fdf.c fdf_utils.c fdf_parc.c fdf_map.c error.c \
-			libft/libft.c libft/get_next_line.c libft/get_next_line_utils.c \
-			fdf_draw/fdf_draw.c fdf_draw/math.c fdf_draw/key_hook.c fdf_draw/transform.c fdf_draw/mouse_hook.c \
-			fdf_draw/draw_line.c fdf_draw/orthographic.c print.c
+SRCS	=	src/fdf_bonus.c src/fdf_image.c src/draw_line.c src/fdf_view.c src/transform.c src/key_hook.c \
+			libft/libft.c libft/gnl_1.c libft/gnl_2.c \
+			util/fdf_parc.c util/fdf_map.c util/fdf_util.c util/fdf_err.c
 
 GREEN		=	'\033[32m'
 NONE		=	'\033[0m'
 CC			=	cc
 NAME		=	fdf
-HEADER		=	fdf.h
+HEADER		=	src/fdf_bonus.h
 OBJ			=	$(SRCS:.c=.o)
 CFLAGS		=	-Wall -Wextra -Werror
 MLXFLAGS	=	-I /usr/local/include -L /usr/local/lib  -lmlx -framework OpenGL -framework AppKit

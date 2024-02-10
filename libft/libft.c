@@ -6,11 +6,11 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:10:49 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/03 09:57:02 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:06:44 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../src/fdf_bonus.h"
 
 int	ft_isdigit(int c)
 {

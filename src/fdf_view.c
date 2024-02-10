@@ -1,16 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_hook.c                                       :+:      :+:    :+:   */
+/*   fdf_view.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:00:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 10:11:44 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:05:59 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf_bonus.h"
+
+void	orthographic(int key, t_fdf *fdf)
+{
+	if (key == T_VIEW)
+	{
+		fdf->gamma = 0;
+		fdf->tetha = 0;
+		fdf->alpha = 0;
+		
+	}
+	else if (key == R_VIEW)
+	{
+		fdf->gamma = 0;
+		fdf->tetha = 0;
+		fdf->alpha = 1.5708;
+	}
+	else
+	{
+		fdf->gamma = -1.5708;
+		fdf->tetha = 1.5708;
+		fdf->alpha = 0;
+	}
+}
 
 void	reset_view(t_fdf *fdf)
 {

@@ -6,11 +6,11 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:14:41 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 10:13:25 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:36:40 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../src/fdf_bonus.h"
 
 int	check_filename(char *s)
 {

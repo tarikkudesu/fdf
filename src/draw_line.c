@@ -6,18 +6,18 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:26:46 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/09 20:41:57 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:51:34 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "fdf_bonus.h"
 
 void	my_mlx_pixel_put(int x, int y, t_fdf *fdf)
 {
 	int	*addr;
 
 	addr = (int *)fdf->img->addr;
-	if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
+	if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)make 
 		addr[y * fdf->img->line_bytes + x] = fdf->color;
 }
 
@@ -82,7 +82,6 @@ void	draw_line(t_fdf *fdf)
 
 	fdf->a->z = fdf->map[(fdf->a->y + fdf->height / 2)][(fdf->a->x + fdf->width / 2)] * fdf->z_zoom;
 	fdf->b->z = fdf->map[(fdf->b->y + fdf->height / 2)][(fdf->b->x + fdf->width / 2)] * fdf->z_zoom;
-	// fdf->color = fdf->color_map[(fdf->b->y + fdf->height / 2)][(fdf->b->x + fdf->width / 2)];
 	set_coordinnates(fdf);
 	dx = fdf->b->x - fdf->a->x;
 	dy = fdf->b->y - fdf->a->y;

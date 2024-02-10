@@ -6,11 +6,11 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:38:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/03 10:06:19 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:36:33 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../src/fdf_bonus.h"
 
 int	*get_row(t_fdf *fdf, char *line)
 {

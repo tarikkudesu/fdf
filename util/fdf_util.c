@@ -6,12 +6,12 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:04:37 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/03 12:10:44 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/10 11:36:44 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "fdf.h"
+#include "../src/fdf_bonus.h"
 
 int	ft_tolower(int c)
 {
