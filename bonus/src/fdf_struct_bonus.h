@@ -6,12 +6,12 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:18:08 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 19:03:03 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_STRUCT_H
-# define FDF_STRUCT_H
+#ifndef FDF_STRUCT_BONUS_H
+# define FDF_STRUCT_BONUS_H
 
 # define ERR_ARG	"Error : Wrong number of arguments"
 # define ERR_FILE	"Error : Wrong file "
@@ -84,6 +84,7 @@ struct s_ui
 	void	*iso_panel;
 	void	*ortho_panel;
 	void	*intro;
+	void	*back;
 };
 
 struct s_img

@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:38:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:18:25 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 19:14:12 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	**init_color_map(t_fdf *fdf)
 {
 	int		**color_map;
-	int 	i;
+	int		i;
 	int		j;
 
 	i = -1;

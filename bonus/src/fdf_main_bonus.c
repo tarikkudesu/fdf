@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:18:05 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 17:30:43 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ void	null_fdf(t_fdf *fdf)
 	fdf->b = NULL;
 }
 
-void	null_img(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-}
-
 void	null_ui(t_ui *ui)
 {
 	ui->intro = NULL;
@@ -41,8 +35,9 @@ void	make_it_3d(t_fdf *fdf)
 	t_ui	ui;
 	t_img	img;
 
+	img.img = NULL;
+	img.addr = NULL;
 	null_ui(&ui);
-	null_img(&img);
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)
 		(free_array(fdf->map), ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
@@ -94,7 +89,5 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		(ft_putendl_fd(ERR_ARG, 2), exit(1));
 	init_fdf(&fdf, av[1]);
-
-	printf("%d\n", fdf.height);
 	make_it_3d(&fdf);
 }

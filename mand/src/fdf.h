@@ -6,12 +6,12 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:19:02 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 17:32:51 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_BONUS_H
-# define FDF_BONUS_H
+#ifndef FDF_H
+# define FDF_H
 
 # include "/usr/local/include/mlx.h"
 # include "fdf_struct.h"
