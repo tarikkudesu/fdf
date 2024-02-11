@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:18:59 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 17:06:37 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ struct s_fdf
 	int		**color_map;
 	int		color;
 	int		zoom;
-	int		z_zoom;
 	int		x_offset;
 	int		y_offset;
 };

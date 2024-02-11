@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:38:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:19:11 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 17:34:48 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	**init_color_map(t_fdf *fdf)
 {
 	int		**color_map;
-	int 	i;
+	int		i;
 	int		j;
 
 	i = -1;
@@ -80,7 +80,6 @@ int	**fill_map(t_fdf *fdf, int fd, int **map)
 		if (!*(map + i))
 			(free_array(map), close(fd), \
 			ft_putendl_fd(ERR_MAL, 2), exit(EXIT_FAILURE));
-		// get_color_row(fdf, line, i);
 		free(line);
 	}
 	return (map);

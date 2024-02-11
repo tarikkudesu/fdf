@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:18:16 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 19:09:24 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	handle_key(int key, void *f)
 		elevate(key, fdf);
 	if (!fdf->iso && (key == F_VIEW || key == T_VIEW || key == R_VIEW))
 		orthographic(key, fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->back, 0, 0);
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	if (fdf->iso)
