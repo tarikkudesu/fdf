@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 17:22:01 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:17:58 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_BONUS_H
 
 # include "/usr/local/include/mlx.h"
-# include "fdf_struct.h"
+# include "fdf_struct_bonus.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
@@ -41,7 +41,7 @@ int			ft_strcmp(char *s1, char *s2);
 int			exit_program(void *f);
 void		destroy(t_fdf *fdf);
 void		free_array(int **array);
-int			*get_row(t_fdf *fdf, char *line);
+int			*get_row(t_fdf *fdf, char *line, int j);
 int			**fill_map(t_fdf *fdf, int fd, int **map);
 int			**get_map(t_fdf *fdf, char *file_name);
 int			**init_color_map(t_fdf *fdf);

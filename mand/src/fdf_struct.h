@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 20:47:36 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:18:59 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define LINE_COLOR	"0x76EFF0"
 # define WIDTH		1000
 # define HEIGHT		1000
+# define ESC		53
 
 typedef struct s_fdf	t_fdf;
 typedef struct s_img	t_img;
@@ -43,8 +44,10 @@ struct s_fdf
 	int		width;
 	int		height;
 	int		**map;
+	int		**color_map;
 	int		color;
 	int		zoom;
+	int		z_zoom;
 	int		x_offset;
 	int		y_offset;
 };
@@ -60,9 +63,9 @@ struct s_img
 
 struct s_point
 {
-	int		x;
-	int		y;
-	float	z;
+	int	x;
+	int	y;
+	int	z;
 };
 
 #endif

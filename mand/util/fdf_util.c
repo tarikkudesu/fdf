@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:04:37 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 20:42:35 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:19:21 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	ft_atoi_base(char *line)
 	int		result;
 	char	c;
 
+	line += 2;
+	result = 0;
 	while (*line && *line != ' ')
 	{
 		c = ft_tolower(*line);

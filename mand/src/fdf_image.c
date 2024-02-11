@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 20:46:18 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:18:52 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,23 @@ void	design_img(t_fdf *fdf)
 
 void	draw_map(t_fdf *fdf)
 {
-	t_point	a;
-	t_point	b;
 	int		x;
 	int		y;
 
 	design_img(fdf);
-	fdf->a = &a;
-	fdf->b = &b;
 	x = -1;
 	while (++x < fdf->width)
 	{
 		y = -1;
 		while (++y < fdf->height)
 		{
+			fdf->color = fdf->color_map[y][x];
 			set_point(x - fdf->width / 2, y - fdf->height / 2, fdf);
-			b.x += 1;
+			fdf->b->x += 1;
 			if (x + 1 < fdf->width)
 				draw_line(fdf);
 			set_point(x - fdf->width / 2, y - fdf->height / 2, fdf);
-			b.y += 1;
+			fdf->b->y += 1;
 			if (y + 1 < fdf->height)
 				draw_line(fdf);
 		}
@@ -66,10 +63,15 @@ void	draw_map(t_fdf *fdf)
 
 void	fill_image(t_fdf *fdf)
 {
+	t_point	a;
+	t_point	b;
+
 	fdf->img->addr = mlx_get_data_addr(fdf->img->img, &fdf->img->pixel_bits, \
 	&fdf->img->line_bytes, &fdf->img->endian);
 	if (!fdf->img->addr)
 		(destroy(fdf), ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
 	fdf->img->line_bytes /= 4;
+	fdf->a = &a;
+	fdf->b = &b;
 	draw_map(fdf);
 }

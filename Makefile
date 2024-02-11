@@ -6,44 +6,58 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/10 20:48:19 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/11 16:17:26 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	mand/src/fdf.c mand/src/fdf_image.c mand/src/draw_line.c \
-			mand/libft/libft.c mand/libft/gnl_1.c mand/libft/gnl_2.c \
-			mand/util/fdf_parc.c mand/util/fdf_map.c mand/util/fdf_util.c mand/util/fdf_err.c
+SRC		=	mand/src/fdf_main.c mand/src/fdf_image.c mand/src/draw_line.c mand/src/transform.c \
+			mand/util/fdf_parc.c mand/util/fdf_map.c mand/util/fdf_util.c mand/util/fdf_err.c \
+			mand/help/help.c mand/help/gnl_1.c mand/help/gnl_2.c
 
-SRC_B	=	bonus/src/fdf_bonus.c bonus/src/fdf_image.c bonus/src/draw_line.c bonus/src/fdf_view.c bonus/src/transform.c bonus/src/key_hook.c \
-			bonus/libft/libft.c bonus/libft/gnl_1.c bonus/libft/gnl_2.c \
-			bonus/util/fdf_parc.c bonus/util/fdf_map.c bonus/util/fdf_util.c bonus/util/fdf_err.c
+SRC_B	=	bonus/src/fdf_main_bonus.c bonus/src/fdf_image_bonus.c bonus/src/draw_line_bonus.c \
+			bonus/src/fdf_view_bonus.c bonus/src/transform_bonus.c bonus/src/key_hook_bonus.c \
+			bonus/util/fdf_pars_bonus.c bonus/util/fdf_map_bonus.c bonus/util/fdf_util_bonus.c \
+			bonus/util/fdf_err_bonus.c bonus/help/help_bonus.c bonus/help/gnl_1_bonus.c \
+			bonus/help/gnl_2_bonus.c
 
 GREEN		=	'\033[32m'
 NONE		=	'\033[0m'
 CC			=	cc
 NAME		=	fdf
-HEADER		=	mand/src/fdf_bonus.h
+BONUS		=	fdf_bonus
+HEADER		=	mand/src/fdf.h mand/src/fdf_struct.h
+HEADER_B	=	bonus/src/fdf_bonus.h bonus/src/fdf_struct_bonus.h
 OBJ			=	$(SRC:.c=.o)
+OBJ_B		=	$(SRC_B:.c=.o)
 CFLAGS		=	-Wall -Wextra -Werror
 MLXFLAGS	=	-I /usr/local/include -L /usr/local/lib  -lmlx -framework OpenGL -framework AppKit
 
-all: $(NAME) clean
+all: $(NAME)
 
-%.o: %.c $(HEADER)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo $(GREEN) "... Compiling\t$<\t[OK]" $(RESET)
-	
+bonus: $(BONUS)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLXFLAGS)~
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(MLXFLAGS)
 	@echo $(GREEN) "compilation done\n" $(NONE)
 
+$(BONUS): $(OBJ_B)
+	@$(CC) $(CFLAGS) $(OBJ_B) -o $(BONUS) $(MLXFLAGS)
+	@echo $(GREEN) "compilation done\n" $(NONE)
+
+mand/%.o: mand/%.c $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo $(GREEN) "... Compiling\t$<\t[OK]" $(RESET)
+
+bonus/%.o: bonus/%.c $(HEADER_B)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo $(GREEN) "... Compiling\t$<\t[OK]" $(RESET)
+
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(OBJ_B)
 	@echo $(GREEN) "clean done\n" $(NONE)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(BONUS)
 	@echo $(GREEN) "fclean done\n" $(NONE)
 
 re: fclean all

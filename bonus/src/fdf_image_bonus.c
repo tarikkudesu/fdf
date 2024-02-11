@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_image.c                                        :+:      :+:    :+:   */
+/*   fdf_image_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/10 17:30:42 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:18:02 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	draw_map(t_fdf *fdf)
 		y = -1;
 		while (++y < fdf->height)
 		{
+			fdf->color = fdf->color_map[y][x];
 			set_point(x - fdf->width / 2, y - fdf->height / 2, fdf);
 			b.x += 1;
 			if (x + 1 < fdf->width)
@@ -89,19 +90,7 @@ void	panel(t_fdf *fdf)
 	t_p	ortho;
 	t_p	intro;
 
-	fdf->ui->intro = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	if (!fdf->ui->intro)
-		(destroy(fdf), ft_putendl_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->ui->iso_panel = mlx_new_image(fdf->mlx, 400, HEIGHT);
-	if (!fdf->ui->iso_panel)
-		(destroy(fdf), ft_putendl_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->ui->ortho_panel = mlx_new_image(fdf->mlx, 400, HEIGHT);
-	if (!fdf->ui->ortho_panel)
-		(destroy(fdf), ft_putendl_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->ui->iso_panel = mlx_xpm_file_to_image(fdf->mlx, \
-	"assets/iso_panel.xpm", &iso.h, &iso.w);
-	fdf->ui->ortho_panel = mlx_xpm_file_to_image(fdf->mlx, \
-	"assets/ortho_panel.xpm", &ortho.h, &ortho.w);
-	fdf->ui->intro = mlx_xpm_file_to_image(fdf->mlx, "assets/fdf.xpm", \
-	&intro.h, &intro.w);
+	fdf->ui->iso_panel = mlx_xpm_file_to_image(fdf->mlx, "bonus/assets/iso_panel.xpm", &iso.h, &iso.w);
+	fdf->ui->ortho_panel = mlx_xpm_file_to_image(fdf->mlx, "bonus/assets/ortho_panel.xpm", &ortho.h, &ortho.w);
+	fdf->ui->intro = mlx_xpm_file_to_image(fdf->mlx, "bonus/assets/fdf.xpm", &intro.h, &intro.w);
 }
