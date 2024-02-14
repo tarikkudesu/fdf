@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 17:33:47 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:22:14 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,10 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	fdf->color = 0x76EFF0;
 }
 
-void	f() {system("leaks fdf");}
-
 int	main(int ac, char **av)
 {
 	t_fdf	fdf;
 
-	// atexit(f);
 	if (ac != 2)
 		(ft_putendl_fd(ERR_ARG, 2), exit(1));
 	init_fdf(&fdf, av[1]);
