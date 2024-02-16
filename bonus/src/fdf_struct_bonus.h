@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 19:03:03 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/16 09:42:30 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ struct s_ui
 	void	*iso_panel;
 	void	*ortho_panel;
 	void	*intro;
-	void	*back;
 };
 
 struct s_img

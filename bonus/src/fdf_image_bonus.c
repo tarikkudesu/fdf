@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/14 14:22:55 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/16 09:42:23 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	panel(t_fdf *fdf)
 	t_p	iso;
 	t_p	ortho;
 	t_p	intro;
-	t_p	back;
 
 	fdf->ui->iso_panel = mlx_xpm_file_to_image(fdf->mlx, \
 	"bonus/assets/iso_panel.xpm", &iso.h, &iso.w);
@@ -97,6 +96,4 @@ void	panel(t_fdf *fdf)
 	"bonus/assets/ortho_panel.xpm", &ortho.h, &ortho.w);
 	fdf->ui->intro = mlx_xpm_file_to_image(fdf->mlx, \
 	"bonus/assets/fdf.xpm", &intro.h, &intro.w);
-	fdf->ui->back = mlx_xpm_file_to_image(fdf->mlx, \
-	"bonus/assets/back.xpm", &back.h, &back.w);
 }
