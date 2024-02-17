@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:17:58 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/17 16:40:33 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			*get_row(t_fdf *fdf, char *line, int j);
 int			**fill_map(t_fdf *fdf, int fd, int **map);
 int			**get_map(t_fdf *fdf, char *file_name);
 int			**init_color_map(t_fdf *fdf);
+float	    perc(float c1, float c2, float c);
 int			ft_tolower(int c);
 int			ft_isspace(char c);
 int			ft_atoi(const char *str);
@@ -69,9 +70,10 @@ void		reset_view(t_fdf *fdf);
 void		isometric_view(t_fdf *fdf);
 void		orthographic_view(t_fdf *fdf);
 int			handle_mouse(int button, int x, int y, void *param);
-void		my_mlx_pixel_put(int x, int y, t_fdf *fdf);
-void		slope_less_then_one(int dx, int dy, t_fdf *fdf);
-void		slope_bigger_than_one(int dx, int dy, t_fdf *fdf);
+void	    my_mlx_pixel_put_less(int x, int y, t_fdf *fdf);
+void	    my_mlx_pixel_put_big(int x, int y, t_fdf *fdf);
+void		slope_less_then_one(int p, int dx, int dy, t_fdf *fdf);
+void		slope_bigger_than_one(int p, int dx, int dy, t_fdf *fdf);
 void		draw_line(t_fdf *fdf);
 void		set_point(int x, int y, t_fdf *fdf);
 void		draw_map(t_fdf *fdf);

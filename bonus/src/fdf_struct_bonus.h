@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/16 09:42:30 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/17 12:31:34 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ struct s_point
 	int		x;
 	int		y;
 	float	z;
+	int		color;
 };
 
 struct s_p

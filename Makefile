@@ -6,7 +6,7 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/11 16:17:26 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/17 15:19:19 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC		=	mand/src/fdf_main.c mand/src/fdf_image.c mand/src/draw_line.c mand/src/tr
 SRC_B	=	bonus/src/fdf_main_bonus.c bonus/src/fdf_image_bonus.c bonus/src/draw_line_bonus.c \
 			bonus/src/fdf_view_bonus.c bonus/src/transform_bonus.c bonus/src/key_hook_bonus.c \
 			bonus/util/fdf_pars_bonus.c bonus/util/fdf_map_bonus.c bonus/util/fdf_util_bonus.c \
-			bonus/util/fdf_err_bonus.c bonus/help/help_bonus.c bonus/help/gnl_1_bonus.c \
+			bonus/util/fdf_err_bonus.c bonus/help/helpfunc_bonus.c bonus/help/gnl_1_bonus.c \
 			bonus/help/gnl_2_bonus.c
 
 GREEN		=	'\033[32m'

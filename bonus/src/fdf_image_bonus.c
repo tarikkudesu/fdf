@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/16 09:42:23 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/17 14:20:39 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	fill_image(t_fdf *fdf)
 	&fdf->img->line_bytes, &fdf->img->endian);
 	if (!fdf->img->addr)
 		(destroy(fdf), ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
-	fdf->img->line_bytes /= 4;
+	// fdf->img->line_bytes /= 4;
 	draw_map(fdf);
 }
 
