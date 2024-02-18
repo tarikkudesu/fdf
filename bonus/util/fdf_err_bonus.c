@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:00:02 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/17 12:56:15 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/18 19:22:44 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	exit_program(void *f)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)f;
-	// free_array(fdf->map);
 	mlx_destroy_image(fdf->mlx, fdf->img->img);
 	mlx_destroy_image(fdf->mlx, fdf->ui->intro);
 	mlx_destroy_image(fdf->mlx, fdf->ui->iso_panel);
@@ -28,7 +27,6 @@ int	exit_program(void *f)
 
 void	destroy(t_fdf *fdf)
 {
-	// free_array(fdf->map);
 	mlx_destroy_image(fdf->mlx, fdf->img->img);
 	mlx_destroy_image(fdf->mlx, fdf->ui->intro);
 	mlx_destroy_image(fdf->mlx, fdf->ui->iso_panel);

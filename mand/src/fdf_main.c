@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/14 14:22:14 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/18 18:02:01 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,45 @@ void	make_it_3d(t_fdf *fdf)
 	mlx_loop(fdf->mlx);
 }
 
+int	get_z_zoom(t_fdf *fdf)
+{
+	int	max;
+
+	if (abs(fdf->max) > abs(fdf->min))
+		max = abs(fdf->max);
+	else
+		max = abs(fdf->min);
+	if (max <= 5)
+		return (40);
+	else if (max <= 10)
+		return (20);
+	else if (max <= 30)
+		return (10);
+	else if (max <= 50)
+		return (5);
+	else if (max <= 100)
+		return (2);
+	else
+		return (1);
+}
+
 void	init_fdf(t_fdf *fdf, char *file_name)
 {
 	if (!check_filename(file_name))
 		(ft_putendl_fd(ERR_FILE, 2), exit(1));
 	null_fdf(fdf);
 	read_file(file_name, fdf);
+	fdf->max = 0;
+	fdf->min = 0;
+	fdf->colors = 0;
 	fdf->color_map = init_color_map(fdf);
 	fdf->map = get_map(fdf, file_name);
+	if (!fdf->colors)
+		init_color_map_grediant(fdf);
 	fdf->zoom = (WIDTH / fdf->width) / 2;
-	fdf->x_offset = WIDTH / 2;
+	fdf->z_zoom = get_z_zoom(fdf);
 	fdf->y_offset = HEIGHT / 2;
+	fdf->x_offset = WIDTH / 2;
 	fdf->color = 0x76EFF0;
 }
 

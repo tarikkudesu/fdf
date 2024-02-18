@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 17:06:37 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/18 19:23:55 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_STRUCT_H
 
 # define ERR_ARG	"Error : Wrong number of arguments"
-# define ERR_FILE	"Error : Wrong file "
+# define ERR_FILE	"Error : Wrong file format"
 # define MLX_ADD	"Error : mlx_get_data_addr error"
 # define ERR_OPEN	"Error : Error opening the file"
 # define ERR_READ	"Error : Error reading the file"
@@ -45,8 +45,12 @@ struct s_fdf
 	int		height;
 	int		**map;
 	int		**color_map;
+	int		colors;
 	int		color;
+	int		max;
+	int		min;
 	int		zoom;
+	int		z_zoom;
 	int		x_offset;
 	int		y_offset;
 };
@@ -65,6 +69,7 @@ struct s_point
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 };
 
 #endif

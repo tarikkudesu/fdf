@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/16 09:42:46 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/18 20:19:42 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	zoom(int key, t_fdf *fdf)
 void	elevate(int key, t_fdf *fdf)
 {
 	if (key == INCR_Z)
-		fdf->z_zoom += 0.1;
+		fdf->z_incr += 0.1;
 	else
-		fdf->z_zoom -= 0.1;
+		fdf->z_incr -= 0.1;
 }
 
 int	handle_key(int key, void *f)

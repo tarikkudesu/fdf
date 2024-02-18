@@ -6,19 +6,19 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/17 15:19:19 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/18 19:30:52 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		=	mand/src/fdf_main.c mand/src/fdf_image.c mand/src/draw_line.c mand/src/transform.c \
 			mand/util/fdf_parc.c mand/util/fdf_map.c mand/util/fdf_util.c mand/util/fdf_err.c \
-			mand/help/help.c mand/help/gnl_1.c mand/help/gnl_2.c
+			mand/util/fdf_color.c mand/help/help.c mand/help/gnl_1.c mand/help/gnl_2.c
 
 SRC_B	=	bonus/src/fdf_main_bonus.c bonus/src/fdf_image_bonus.c bonus/src/draw_line_bonus.c \
 			bonus/src/fdf_view_bonus.c bonus/src/transform_bonus.c bonus/src/key_hook_bonus.c \
 			bonus/util/fdf_pars_bonus.c bonus/util/fdf_map_bonus.c bonus/util/fdf_util_bonus.c \
-			bonus/util/fdf_err_bonus.c bonus/help/helpfunc_bonus.c bonus/help/gnl_1_bonus.c \
-			bonus/help/gnl_2_bonus.c
+			bonus/util/fdf_color_bonus.c bonus/util/fdf_err_bonus.c bonus/help/helpfunc_bonus.c \
+			bonus/help/gnl_1_bonus.c bonus/help/gnl_2_bonus.c
 
 GREEN		=	'\033[32m'
 NONE		=	'\033[0m'

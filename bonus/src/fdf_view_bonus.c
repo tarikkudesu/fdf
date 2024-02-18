@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:00:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/16 12:16:48 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/18 20:22:56 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	reset_view(t_fdf *fdf)
 	fdf->gamma = 0;
 	fdf->alpha = 0;
 	fdf->tetha = 0;
-	fdf->z_zoom = 1;
+	fdf->z_incr = 1;
+	fdf->z_zoom = get_z_zoom(fdf);
 	fdf->zoom = (WIDTH / fdf->width) / 3;
 	fdf->x_offset = 400 + (WIDTH - 400) / 2;
 	fdf->y_offset = HEIGHT / 2;
 	fdf->x_translate = 0;
 	fdf->y_translate = 0;
-	fdf->color = 0x76EFF0;
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	if (fdf->iso)
