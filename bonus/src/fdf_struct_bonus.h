@@ -6,13 +6,14 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/18 20:19:32 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/19 11:23:40 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_STRUCT_BONUS_H
 # define FDF_STRUCT_BONUS_H
 
+# define MLX_XPM	"Error : mlx_xpm_file_to_image error"
 # define ERR_ARG	"Error : Wrong number of arguments"
 # define ERR_FILE	"Error : Wrong file format"
 # define MLX_ADD	"Error : mlx_get_data_addr error"

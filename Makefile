@@ -6,7 +6,7 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/18 19:30:52 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/19 11:35:28 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ HEADER_B	=	bonus/src/fdf_bonus.h bonus/src/fdf_struct_bonus.h
 OBJ			=	$(SRC:.c=.o)
 OBJ_B		=	$(SRC_B:.c=.o)
 CFLAGS		=	-Wall -Wextra -Werror
-MLXFLAGS	=	-I /usr/local/include -L /usr/local/lib  -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS	=	-L /usr/local/lib -l mlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 

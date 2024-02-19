@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/18 18:02:01 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/19 11:02:58 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,20 @@ void	make_it_3d(t_fdf *fdf)
 
 	img.img = NULL;
 	img.addr = NULL;
+	fdf->img = &img;
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)
-		(free_array(fdf->map), ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
+		(free_array(fdf->map), free_array(fdf->color_map), \
+		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
 	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf");
 	if (!fdf->win)
-		(free_array(fdf->map), ft_putendl_fd(MLX_WIN, 2), exit(EXIT_FAILURE));
+		(free_array(fdf->map), free_array(fdf->color_map), \
+		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
 	img.img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
 	if (!img.img)
-		(free_array(fdf->map), ft_putendl_fd(MLX_IMG, 2), exit(EXIT_FAILURE));
-	fdf->img = &img;
+		(free_array(fdf->map), free_array(fdf->color_map), \
+		ft_putendl_fd(MLX_IMG, 2), mlx_destroy_window(fdf->mlx, fdf->win), \
+		exit(EXIT_FAILURE));
 	fill_image(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	mlx_hook(fdf->win, 17, 0, &exit_program, fdf);

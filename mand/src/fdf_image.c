@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/18 17:32:25 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/19 10:45:26 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,12 @@ void	fill_image(t_fdf *fdf)
 	t_point	a;
 	t_point	b;
 
+	fdf->a = &a;
+	fdf->b = &b;
 	fdf->img->addr = mlx_get_data_addr(fdf->img->img, &fdf->img->pixel_bits, \
 	&fdf->img->line_bytes, &fdf->img->endian);
 	if (!fdf->img->addr)
-		(destroy(fdf), ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
-	fdf->a = &a;
-	fdf->b = &b;
+		(free_array(fdf->color_map), free_array(fdf->color_map), \
+		destroy(fdf), ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
 	draw_map(fdf);
 }
