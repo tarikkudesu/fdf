@@ -6,13 +6,13 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/19 10:35:34 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/19 11:53:55 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	make_it_3d(t_fdf *fdf)
+void	init_window(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)
@@ -22,14 +22,27 @@ void	make_it_3d(t_fdf *fdf)
 	if (!fdf->win)
 		(free_array(fdf->map), free_array(fdf->color_map), \
 		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
-	fdf->img->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	if (!fdf->img->img)
+}
+
+void	make_it_3d(t_fdf *fdf)
+{
+	t_ui	ui;
+	t_img	img;
+
+	null_ui(&ui);
+	img.img = NULL;
+	img.addr = NULL;
+	init_window(fdf);
+	img.img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	if (!img.img)
 		(free_array(fdf->map), free_array(fdf->color_map), \
 		ft_putendl_fd(MLX_IMG, 2), mlx_destroy_window(fdf->mlx, fdf->win), \
 		exit(EXIT_FAILURE));
+	fdf->ui = &ui;
+	fdf->img = &img;
 	panel(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->intro, 0, 0);
 	fill_image(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->intro, 0, 0);
 	mlx_hook(fdf->win, 17, 0, &exit_program, fdf);
 	mlx_hook(fdf->win, 2, 0, &handle_key, fdf);
 	mlx_mouse_hook(fdf->win, &handle_mouse, fdf);
@@ -87,16 +100,9 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 int	main(int ac, char **av)
 {
 	t_fdf	fdf;
-	t_ui	ui;
-	t_img	img;
 
 	if (ac != 2)
 		(ft_putendl_fd(ERR_ARG, 2), exit(1));
-	img.img = NULL;
-	img.addr = NULL;
-	fdf.img = &img;
-	fdf.ui = &ui;
-	null_ui(&ui);
 	init_fdf(&fdf, av[1]);
 	make_it_3d(&fdf);
 }

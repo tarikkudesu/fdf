@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/18 20:19:42 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/19 12:01:14 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,15 @@ void	rotate(int key, t_fdf *fdf)
 void	zoom(int key, t_fdf *fdf)
 {
 	if (key == ZOOM_IN)
+	{
+		fdf->z_zoom += 1;
 		fdf->zoom += 1;
+	}
 	if (key == ZOOM_OUT && fdf->zoom > 1)
+	{
+		fdf->z_zoom -= 1;
 		fdf->zoom -= 1;
+	}
 }
 
 void	elevate(int key, t_fdf *fdf)
