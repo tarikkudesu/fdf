@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/19 11:53:55 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 13:13:32 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,6 @@ void	make_it_3d(t_fdf *fdf)
 	mlx_loop(fdf->mlx);
 }
 
-int	get_z_zoom(t_fdf *fdf)
-{
-	int	max;
-
-	if (abs(fdf->max) > abs(fdf->min))
-		max = abs(fdf->max);
-	else
-		max = abs(fdf->min);
-	if (max <= 5)
-		return (40);
-	else if (max <= 10)
-		return (20);
-	else if (max <= 30)
-		return (10);
-	else if (max <= 50)
-		return (5);
-	else if (max <= 100)
-		return (2);
-	else
-		return (1);
-}
-
 void	init_fdf(t_fdf *fdf, char *file_name)
 {
 	if (!check_filename(file_name))
@@ -86,7 +64,6 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 		init_color_map_grediant(fdf);
 	fdf->zoom = (WIDTH / fdf->width) / 3;
 	fdf->z_incr = 1;
-	fdf->z_zoom = get_z_zoom(fdf);
 	fdf->x_offset = 400 + (WIDTH - 400) / 2;
 	fdf->y_offset = HEIGHT / 2;
 	fdf->x_translate = 0;

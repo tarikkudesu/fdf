@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/19 10:02:47 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 13:42:01 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	set_coordinnates(t_fdf *fdf)
 	fdf->b->x *= fdf->zoom;
 	fdf->a->y *= fdf->zoom;
 	fdf->b->y *= fdf->zoom;
-	fdf->a->z *= fdf->z_zoom;
-	fdf->b->z *= fdf->z_zoom;
+	fdf->a->z *= fdf->zoom;
+	fdf->b->z *= fdf->zoom;
 	rotate_x(fdf);
 	rotate_y(fdf);
 	rotate_z(fdf);

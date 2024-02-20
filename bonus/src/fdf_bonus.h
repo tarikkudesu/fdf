@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/19 10:06:26 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 13:15:15 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	panel(t_fdf *fdf);
 void	null_fdf(t_fdf *fdf);
 void	null_ui(t_ui *ui);
 void	make_it_3d(t_fdf *fdf);
-int		get_z_zoom(t_fdf *fdf);
 void	init_fdf(t_fdf *fdf, char *file_name);
 int		exit_program(void *f);
 void	destroy(t_fdf *fdf);

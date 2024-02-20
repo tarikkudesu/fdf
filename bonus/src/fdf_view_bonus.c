@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:00:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/18 20:22:56 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 13:15:23 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	reset_view(t_fdf *fdf)
 	fdf->alpha = 0;
 	fdf->tetha = 0;
 	fdf->z_incr = 1;
-	fdf->z_zoom = get_z_zoom(fdf);
 	fdf->zoom = (WIDTH / fdf->width) / 3;
 	fdf->x_offset = 400 + (WIDTH - 400) / 2;
 	fdf->y_offset = HEIGHT / 2;
