@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 13:49:03 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 18:24:40 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ void	set_coordinnates(t_fdf *fdf)
 	fdf->b->y *= fdf->zoom;
 	fdf->a->z *= fdf->zoom;
 	fdf->b->z *= fdf->zoom;
-	rotate_z(fdf);
 	rotate_x(fdf);
 	rotate_y(fdf);
+	rotate_z(fdf);
+	if (fdf->iso)
+		isometric(fdf);
 	fdf->a->x += 400 + (WIDTH - 400) / 2 + fdf->x_translate;
 	fdf->b->x += 400 + (WIDTH - 400) / 2 + fdf->x_translate;
 	fdf->a->y += HEIGHT / 2 + fdf->y_translate;

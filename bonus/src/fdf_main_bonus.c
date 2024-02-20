@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 13:49:46 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 18:24:18 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	fdf->z_incr = 1;
 	fdf->x_translate = 0;
 	fdf->y_translate = 0;
-	fdf->gamma = 0.7853982;
-	fdf->alpha = 0.9553166;
+	// fdf->gamma = 0.7853982;
+	// fdf->alpha = 0.9553166;
+	fdf->gamma = 0;
+	fdf->alpha = 0;
 	fdf->tetha = 0;
 	fdf->iso = 1;
 }

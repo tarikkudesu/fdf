@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 13:15:32 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 17:41:39 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	handle_key(int key, void *f)
 
 	fdf = (t_fdf *)f;
 	if (key == 53)
-		(destroy(fdf), exit(0));
+		exit_program(fdf);
 	if (key == ZOOM_IN || key == ZOOM_OUT)
 		zoom(key, fdf);
 	if (key == UP || key == DOWN || key == RIGHT || key == LEFT)

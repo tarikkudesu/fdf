@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 16:13:41 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 18:27:37 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,6 @@ void	null_fdf(t_fdf *fdf)
 	fdf->map = NULL;
 	fdf->a = NULL;
 	fdf->b = NULL;
-}
-
-void	make_it_3d(t_fdf *fdf)
-{
-	t_img	img;
-
-	img.img = NULL;
-	img.addr = NULL;
-	fdf->img = &img;
-	fdf->mlx = mlx_init();
-	if (!fdf->mlx)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
-	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf");
-	if (!fdf->win)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
-	img.img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	if (!img.img)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_IMG, 2), mlx_destroy_window(fdf->mlx, fdf->win), \
-		exit(EXIT_FAILURE));
-	fill_image(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
-	mlx_hook(fdf->win, 17, 0, &exit_program, fdf);
-	mlx_hook(fdf->win, 2, 0, &handle_key, fdf);
-	mlx_loop(fdf->mlx);
 }
 
 int	get_z_zoom(t_fdf *fdf)
@@ -85,9 +58,36 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	if (!fdf->colors && fdf->width < 100)
 		init_color_map_grediant(fdf);
 	fdf->z_zoom = get_z_zoom(fdf);
-	fdf->gamma = 0.7853982;
-	fdf->alpha = 0.9553166;
+	fdf->gamma = 0;
+	fdf->alpha = 0;
 	fdf->tetha = 0;
+}
+
+void	make_it_3d(t_fdf *fdf)
+{
+	t_img	img;
+
+	img.img = NULL;
+	img.addr = NULL;
+	fdf->img = &img;
+	fdf->mlx = mlx_init();
+	if (!fdf->mlx)
+		(free_array(fdf->map), free_array(fdf->color_map), \
+		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
+	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf");
+	if (!fdf->win)
+		(free_array(fdf->map), free_array(fdf->color_map), \
+		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
+	img.img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	if (!img.img)
+		(free_array(fdf->map), free_array(fdf->color_map), \
+		ft_putendl_fd(MLX_IMG, 2), mlx_destroy_window(fdf->mlx, fdf->win), \
+		exit(EXIT_FAILURE));
+	fill_image(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	mlx_hook(fdf->win, 17, 0, &exit_program, fdf);
+	mlx_hook(fdf->win, 2, 0, &handle_key, fdf);
+	mlx_loop(fdf->mlx);
 }
 
 int	main(int ac, char **av)
@@ -98,4 +98,5 @@ int	main(int ac, char **av)
 		(ft_putendl_fd(ERR_ARG, 2), exit(1));
 	init_fdf(&fdf, av[1]);
 	make_it_3d(&fdf);
+	return (0);
 }
