@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/19 11:02:58 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 16:13:41 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,12 @@ void	init_fdf(t_fdf *fdf, char *file_name)
 	fdf->colors = 0;
 	fdf->color_map = init_color_map(fdf);
 	fdf->map = get_map(fdf, file_name);
-	if (!fdf->colors)
+	if (!fdf->colors && fdf->width < 100)
 		init_color_map_grediant(fdf);
-	fdf->zoom = (WIDTH / fdf->width) / 2;
 	fdf->z_zoom = get_z_zoom(fdf);
-	fdf->y_offset = HEIGHT / 2;
-	fdf->x_offset = WIDTH / 2;
-	fdf->color = 0x76EFF0;
+	fdf->gamma = 0.7853982;
+	fdf->alpha = 0.9553166;
+	fdf->tetha = 0;
 }
 
 int	main(int ac, char **av)

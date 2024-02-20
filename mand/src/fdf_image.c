@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/19 10:45:26 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 15:17:12 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	draw_map(t_fdf *fdf)
 		y = -1;
 		while (++y < fdf->height)
 		{
-			fdf->color = fdf->color_map[y][x];
 			set_point(x - fdf->width / 2, y - fdf->height / 2, fdf);
 			fdf->b->x += 1;
 			if (x + 1 < fdf->width)

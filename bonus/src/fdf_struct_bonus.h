@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 13:15:19 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 13:49:40 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ struct s_fdf
 	int		min;
 	int		zoom;
 	float	z_incr;
-	int		x_offset;
-	int		y_offset;
 	int		x_translate;
 	int		y_translate;
 };

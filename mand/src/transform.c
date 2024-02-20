@@ -6,35 +6,48 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/18 17:32:41 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 15:16:37 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	isometric(t_fdf *fdf)
+void	rotate_z(t_fdf *fdf)
 {
 	int	tmp;
 
 	tmp = fdf->a->x;
-	fdf->a->x = (tmp - fdf->a->y) * cos(0.523599);
-	fdf->a->y = (tmp + fdf->a->y) * sin(0.523599) - fdf->a->z;
+	fdf->a->x = tmp * cos(fdf->gamma) - fdf->a->y * sin(fdf->gamma);
+	fdf->a->y = tmp * sin(fdf->gamma) + fdf->a->y * cos(fdf->gamma);
 	tmp = fdf->b->x;
-	fdf->b->x = (tmp - fdf->b->y) * cos(0.523599);
-	fdf->b->y = (tmp + fdf->b->y) * sin(0.523599) - fdf->b->z;
+	fdf->b->x = tmp * cos(fdf->gamma) - fdf->b->y * sin(fdf->gamma);
+	fdf->b->y = tmp * sin(fdf->gamma) + fdf->b->y * cos(fdf->gamma);
+}
+
+void	rotate_x(t_fdf *fdf)
+{
+	int	tmp;
+
+	tmp = fdf->a->y;
+	fdf->a->y = tmp * cos(fdf->alpha) - fdf->a->z * sin(fdf->alpha);
+	fdf->a->z = tmp * sin(fdf->alpha) + fdf->a->z * cos(fdf->alpha);
+	tmp = fdf->b->y;
+	fdf->b->y = tmp * cos(fdf->alpha) - fdf->b->z * sin(fdf->alpha);
+	fdf->b->z = tmp * sin(fdf->alpha) + fdf->b->z * cos(fdf->alpha);
 }
 
 void	set_coordinnates(t_fdf *fdf)
 {
-	fdf->a->x *= fdf->zoom;
-	fdf->b->x *= fdf->zoom;
-	fdf->a->y *= fdf->zoom;
-	fdf->b->y *= fdf->zoom;
+	fdf->a->x *= (WIDTH / fdf->width) / 2;
+	fdf->b->x *= (WIDTH / fdf->width) / 2;
+	fdf->a->y *= (WIDTH / fdf->width) / 2;
+	fdf->b->y *= (WIDTH / fdf->width) / 2;
 	fdf->a->z *= fdf->z_zoom;
 	fdf->b->z *= fdf->z_zoom;
-	isometric(fdf);
-	fdf->a->x += fdf->x_offset;
-	fdf->b->x += fdf->x_offset;
-	fdf->a->y += fdf->y_offset;
-	fdf->b->y += fdf->y_offset;
+	rotate_z(fdf);
+	rotate_x(fdf);
+	fdf->a->x += WIDTH / 2;
+	fdf->b->x += WIDTH / 2;
+	fdf->a->y += HEIGHT / 2;
+	fdf->b->y += HEIGHT / 2;
 }
