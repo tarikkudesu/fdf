@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 17:41:07 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:13:59 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,12 @@ void	set_point(int x, int y, t_fdf *fdf)
 void	design_img(t_fdf *fdf)
 {
 	int	i;
-	int	j;
 	int	*addr;
 
 	i = -1;
 	addr = (int *)fdf->img->addr;
-	while (++i < HEIGHT)
-	{
-		j = -1;
-		while (++j < WIDTH)
-			addr[i * WIDTH + j] = 0x071021;
-	}
+	while (++i < HEIGHT * WIDTH)
+		addr[i] = 0x071021;
 	if (!fdf->iso)
 	{
 		i = 399;
@@ -93,7 +88,7 @@ void	panel(t_fdf *fdf)
 	"bonus/assets/iso_panel.xpm", &iso.h, &iso.w);
 	if (!fdf->ui->iso_panel)
 		(free_array(fdf->map), free_array(fdf->color_map), \
-		 ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
+		ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
 	fdf->ui->ortho_panel = mlx_xpm_file_to_image(fdf->mlx, \
 	"bonus/assets/ortho_panel.xpm", &ortho.h, &ortho.w);
 	if (!fdf->ui->ortho_panel)

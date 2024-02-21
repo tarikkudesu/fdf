@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 17:37:58 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 09:48:56 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,12 @@ void	set_point(int x, int y, t_fdf *fdf)
 void	design_img(t_fdf *fdf)
 {
 	int	i;
-	int	j;
 	int	*addr;
 
 	i = -1;
 	addr = (int *)fdf->img->addr;
-	while (++i < HEIGHT)
-	{
-		j = -1;
-		while (++j < WIDTH)
-			addr[i * WIDTH + j] = 0x071021;
-	}
+	while (++i < HEIGHT * WIDTH)
+		addr[i] = 0x071021;
 }
 
 void	draw_map(t_fdf *fdf)

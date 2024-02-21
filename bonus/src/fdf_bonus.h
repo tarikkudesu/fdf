@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 13:15:15 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 09:56:52 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ char	*get_next_line(int fd);
 int		ft_isdigit(int c);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
+float	perc(float c1, float c2, float c);
+int		ft_tolower(int c);
+int		ft_isspace(char c);
+int		ft_atoi(const char *str);
+int		ft_atoi_base(char *line);
 
 /* FUNCTIONS */
 void	orthographic(int key, t_fdf *fdf);
@@ -67,7 +72,6 @@ void	null_ui(t_ui *ui);
 void	make_it_3d(t_fdf *fdf);
 void	init_fdf(t_fdf *fdf, char *file_name);
 int		exit_program(void *f);
-void	destroy(t_fdf *fdf);
 void	free_array(int **array);
 int		**init_color_map(t_fdf *fdf);
 int		get_color(float normalized_z, int max_color, int min_color);
@@ -76,11 +80,6 @@ int		get_value(int i, int j, t_fdf *fdf, char **line);
 int		*get_row(t_fdf *fdf, char *line, int j);
 int		**fill_map(t_fdf *fdf, int fd, int **map);
 int		**get_map(t_fdf *fdf, char *file_name);
-float	perc(float c1, float c2, float c);
-int		ft_tolower(int c);
-int		ft_isspace(char c);
-int		ft_atoi(const char *str);
-int		ft_atoi_base(char *line);
 int		check_filename(char *s);
 int		get_height(char *file_name);
 int		word_count(char *line);

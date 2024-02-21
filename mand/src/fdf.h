@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/19 11:34:17 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 09:56:05 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,6 @@
 # include <fcntl.h>
 # include <math.h>
 
-/* GET_NEXT_LINE */
-char	*gn_strjoin(char *s1, char *s2);
-char	*gn_strchr(const char *s);
-char	*ft_strdup(const char *s1);
-size_t	gn_strlen(const char *s);
-char	*ft_after_nl(char *stat);
-char	*ft_before_nl(char *stat);
-char	*read_to_nl(char *stat, int fd);
-char	*get_next_line(int fd);
-
 /* HELP FUNCTIONS */
 int		ft_isdigit(int c);
 int		ft_strcmp(char *s1, char *s2);
@@ -41,6 +31,14 @@ int		ft_tolower(int c);
 int		ft_isspace(char c);
 int		ft_atoi(const char *str);
 int		ft_atoi_base(char *line);
+char	*gn_strjoin(char *s1, char *s2);
+char	*gn_strchr(const char *s);
+char	*ft_strdup(const char *s1);
+size_t	gn_strlen(const char *s);
+char	*ft_after_nl(char *stat);
+char	*ft_before_nl(char *stat);
+char	*read_to_nl(char *stat, int fd);
+char	*get_next_line(int fd);
 
 /* FUNCTIONS */
 void	my_mlx_pixel_put_big(int x, int y, t_fdf *fdf);
@@ -60,7 +58,6 @@ int		get_z_zoom(t_fdf *fdf);
 void	init_fdf(t_fdf *fdf, char *file_name);
 int		handle_key(int key, void *f);
 int		exit_program(void *f);
-void	destroy(t_fdf *fdf);
 void	free_array(int **array);
 int		**init_color_map(t_fdf *fdf);
 int		get_color(float normalized_z, int max_color, int min_color);

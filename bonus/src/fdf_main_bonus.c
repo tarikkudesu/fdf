@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 18:24:18 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:08:25 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,30 @@ void	init_window(t_fdf *fdf)
 	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf");
 	if (!fdf->win)
 		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
+		ft_putendl_fd(MLX_WIN, 2), exit(EXIT_FAILURE));
+}
+
+void	init_fdf(t_fdf *fdf, char *file_name)
+{
+	if (!check_filename(file_name))
+		(ft_putendl_fd(ERR_FILE, 2), exit(1));
+	null_fdf(fdf);
+	read_file(file_name, fdf);
+	fdf->max = 0;
+	fdf->min = 0;
+	fdf->colors = 0;
+	fdf->color_map = init_color_map(fdf);
+	fdf->map = get_map(fdf, file_name);
+	if (!fdf->colors)
+		init_color_map_grediant(fdf);
+	fdf->zoom = (WIDTH / fdf->width) / 3;
+	fdf->z_incr = 1;
+	fdf->x_translate = 0;
+	fdf->y_translate = 0;
+	fdf->gamma = 0;
+	fdf->alpha = 0;
+	fdf->tetha = 0;
+	fdf->iso = 1;
 }
 
 void	make_it_3d(t_fdf *fdf)
@@ -47,31 +70,6 @@ void	make_it_3d(t_fdf *fdf)
 	mlx_hook(fdf->win, 2, 0, &handle_key, fdf);
 	mlx_mouse_hook(fdf->win, &handle_mouse, fdf);
 	mlx_loop(fdf->mlx);
-}
-
-void	init_fdf(t_fdf *fdf, char *file_name)
-{
-	if (!check_filename(file_name))
-		(ft_putendl_fd(ERR_FILE, 2), exit(1));
-	null_fdf(fdf);
-	read_file(file_name, fdf);
-	fdf->max = 0;
-	fdf->min = 0;
-	fdf->colors = 0;
-	fdf->color_map = init_color_map(fdf);
-	fdf->map = get_map(fdf, file_name);
-	if (!fdf->colors)
-		init_color_map_grediant(fdf);
-	fdf->zoom = (WIDTH / fdf->width) / 3;
-	fdf->z_incr = 1;
-	fdf->x_translate = 0;
-	fdf->y_translate = 0;
-	// fdf->gamma = 0.7853982;
-	// fdf->alpha = 0.9553166;
-	fdf->gamma = 0;
-	fdf->alpha = 0;
-	fdf->tetha = 0;
-	fdf->iso = 1;
 }
 
 int	main(int ac, char **av)

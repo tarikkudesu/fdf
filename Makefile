@@ -6,7 +6,7 @@
 #    By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 12:02:48 by tamehri           #+#    #+#              #
-#    Updated: 2024/02/19 11:35:28 by tamehri          ###   ########.fr        #
+#    Updated: 2024/02/21 10:13:19 by tamehri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,3 +62,5 @@ fclean: clean
 
 re: fclean all
 	@echo $(GREEN) "re done\n" $(NONE)
+
+.PHONY: clean

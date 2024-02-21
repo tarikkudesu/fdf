@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/20 13:49:40 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:06:02 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@
 # define MLX_IMG	"Error : mlx_new_image error"
 # define MLX_INIT	"Error : mlx_init error"
 # define ERR_MAL	"Error : malloc error"
-# define ERR_NAME	"Error : Invalid map"
 # define ERR_EMTY	"Error : empty file"
-# define MAIN_COLOR	"0x0A261E"
-# define LINE_COLOR	"0x76EFF0"
 # define WIDTH		1920
 # define HEIGHT		1080
 
