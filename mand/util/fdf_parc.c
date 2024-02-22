@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:14:41 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:19:16 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:23:23 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_height(char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (-1 == fd)
-		(ft_putendl_fd(ERR_OPEN, 2), exit(EXIT_FAILURE));
+		(perror(ERR_OPEN), exit(EXIT_FAILURE));
 	height = 0;
 	while (1)
 	{
@@ -83,7 +83,7 @@ int	get_width(char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (-1 == fd)
-		(ft_putendl_fd(ERR_OPEN, 2), exit(EXIT_FAILURE));
+		(perror(ERR_OPEN), exit(EXIT_FAILURE));
 	width = 0;
 	line = get_next_line(fd);
 	if (!line)

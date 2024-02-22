@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:36:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 17:06:53 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 09:49:48 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	isometric(t_fdf *fdf)
 
 void	set_coordinnates(t_fdf *fdf)
 {
-	fdf->a->x *= fdf->zoom;
-	fdf->b->x *= fdf->zoom;
-	fdf->a->y *= fdf->zoom;
-	fdf->b->y *= fdf->zoom;
-	fdf->a->z *= fdf->zoom;
-	fdf->b->z *= fdf->zoom;
+	fdf->a->x *= (WIDTH / fdf->width) / 2;
+	fdf->b->x *= (WIDTH / fdf->width) / 2;
+	fdf->a->y *= (WIDTH / fdf->width) / 2;
+	fdf->b->y *= (WIDTH / fdf->width) / 2;
+	fdf->a->z *= fdf->z_zoom;
+	fdf->b->z *= fdf->z_zoom;
 	isometric(fdf);
-	fdf->a->x += fdf->x_offset;
-	fdf->b->x += fdf->x_offset;
-	fdf->a->y += fdf->y_offset;
-	fdf->b->y += fdf->y_offset;
+	fdf->a->x += WIDTH / 2;
+	fdf->b->x += WIDTH / 2;
+	fdf->a->y += HEIGHT / 2;
+	fdf->b->y += HEIGHT / 2;
 }

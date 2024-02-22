@@ -6,11 +6,18 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:04:37 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:19:21 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/18 16:43:51 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/fdf.h"
+
+float	perc(float c1, float c2, float c)
+{
+	if (c1 != c2)
+		return ((c - c1) / (c2 - c1));
+	return (0);
+}
 
 int	ft_tolower(int c)
 {

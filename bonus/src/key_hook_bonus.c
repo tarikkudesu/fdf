@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 11:47:34 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 19:09:24 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/22 12:09:47 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	zoom(int key, t_fdf *fdf)
 void	elevate(int key, t_fdf *fdf)
 {
 	if (key == INCR_Z)
-		fdf->z_zoom += 0.1;
+		fdf->z_incr += 0.05;
 	else
-		fdf->z_zoom -= 0.1;
+		fdf->z_incr -= 0.05;
 }
 
 int	handle_key(int key, void *f)
@@ -62,7 +62,7 @@ int	handle_key(int key, void *f)
 
 	fdf = (t_fdf *)f;
 	if (key == 53)
-		(destroy(fdf), exit(0));
+		exit_program(fdf);
 	if (key == ZOOM_IN || key == ZOOM_OUT)
 		zoom(key, fdf);
 	if (key == UP || key == DOWN || key == RIGHT || key == LEFT)
@@ -74,7 +74,6 @@ int	handle_key(int key, void *f)
 		elevate(key, fdf);
 	if (!fdf->iso && (key == F_VIEW || key == T_VIEW || key == R_VIEW))
 		orthographic(key, fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->back, 0, 0);
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 	if (fdf->iso)

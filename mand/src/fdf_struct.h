@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 17:06:37 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 10:25:50 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 # define FDF_STRUCT_H
 
 # define ERR_ARG	"Error : Wrong number of arguments"
-# define ERR_FILE	"Error : Wrong file "
 # define MLX_ADD	"Error : mlx_get_data_addr error"
-# define ERR_OPEN	"Error : Error opening the file"
 # define ERR_READ	"Error : Error reading the file"
 # define MLX_WIN	"Error : mlx_new_window error"
 # define MLX_IMG	"Error : mlx_new_image error"
+# define ERR_FILE	"Error : Wrong file format"
 # define MLX_INIT	"Error : mlx_init error"
 # define ERR_MAL	"Error : malloc error"
-# define ERR_NAME	"Error : Invalid map"
 # define ERR_EMTY	"Error : empty file"
-# define MAIN_COLOR	"0x0A261E"
-# define LINE_COLOR	"0x76EFF0"
+# define ERR_OPEN	"Error"
 # define WIDTH		1000
 # define HEIGHT		1000
 # define ESC		53
@@ -45,10 +42,13 @@ struct s_fdf
 	int		height;
 	int		**map;
 	int		**color_map;
-	int		color;
-	int		zoom;
-	int		x_offset;
-	int		y_offset;
+	int		colors;
+	int		max;
+	int		min;
+	float	alpha;
+	float	tetha;
+	float	gamma;
+	int		z_zoom;
 };
 
 struct s_img
@@ -65,6 +65,7 @@ struct s_point
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 };
 
 #endif

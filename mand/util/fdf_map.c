@@ -6,33 +6,31 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:38:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 17:34:48 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/18 18:17:14 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/fdf.h"
 
-int	**init_color_map(t_fdf *fdf)
+int	get_value(int i, int j, t_fdf *fdf, char **line)
 {
-	int		**color_map;
-	int		i;
-	int		j;
+	int	value;
 
-	i = -1;
-	j = -1;
-	color_map = malloc(sizeof(int *) * fdf->height);
-	if (!color_map)
-		(perror(ERR_MAL), exit(EXIT_FAILURE));
-	while (++i < fdf->height)
+	value = ft_atoi(*line);
+	while (**line && ft_isdigit(**line))
+		(*line)++;
+	if (**line == ',')
 	{
-		j = -1;
-		*(color_map + i) = malloc(sizeof(int) * fdf->width);
-		if (!*(color_map + i))
-			(free_array(fdf->color_map), perror(ERR_MAL), exit(EXIT_FAILURE));
-		while (++j < fdf->width)
-			*(*(color_map + i) + j) = 0x76EFF0;
+		if (!fdf->colors)
+			fdf->colors = 1;
+		(*line)++;
+		fdf->color_map[j][i] = ft_atoi_base(*line);
 	}
-	return (color_map);
+	while (**line && **line != ' ')
+		(*line)++;
+	while (**line && **line == ' ')
+		(*line)++;
+	return (value);
 }
 
 int	*get_row(t_fdf *fdf, char *line, int j)
@@ -48,18 +46,11 @@ int	*get_row(t_fdf *fdf, char *line, int j)
 		line++;
 	while (++i < fdf->width)
 	{
-		*(row + i) = ft_atoi(line);
-		while (*line && ft_isdigit(*line))
-			line++;
-		if (*line == ',')
-		{
-			line++;
-			fdf->color_map[j][i] = ft_atoi_base(line);
-		}
-		while (*line && *line != ' ')
-			line++;
-		while (*line && *line == ' ')
-			line++;
+		*(row + i) = get_value(i, j, fdf, &line);
+		if (*(row + i) > fdf->max)
+			fdf->max = *(row + i);
+		if (*(row + i) < fdf->min)
+			fdf->min = *(row + i);
 	}
 	return (row);
 }

@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:18:52 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/21 09:48:56 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,12 @@ void	set_point(int x, int y, t_fdf *fdf)
 void	design_img(t_fdf *fdf)
 {
 	int	i;
-	int	j;
 	int	*addr;
 
 	i = -1;
 	addr = (int *)fdf->img->addr;
-	while (++i < HEIGHT)
-	{
-		j = -1;
-		while (++j < WIDTH)
-			addr[i * WIDTH + j] = 0x071021;
-	}
+	while (++i < HEIGHT * WIDTH)
+		addr[i] = 0x071021;
 }
 
 void	draw_map(t_fdf *fdf)
@@ -48,7 +43,6 @@ void	draw_map(t_fdf *fdf)
 		y = -1;
 		while (++y < fdf->height)
 		{
-			fdf->color = fdf->color_map[y][x];
 			set_point(x - fdf->width / 2, y - fdf->height / 2, fdf);
 			fdf->b->x += 1;
 			if (x + 1 < fdf->width)
@@ -66,12 +60,12 @@ void	fill_image(t_fdf *fdf)
 	t_point	a;
 	t_point	b;
 
+	fdf->a = &a;
+	fdf->b = &b;
 	fdf->img->addr = mlx_get_data_addr(fdf->img->img, &fdf->img->pixel_bits, \
 	&fdf->img->line_bytes, &fdf->img->endian);
 	if (!fdf->img->addr)
-		(destroy(fdf), ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
-	fdf->img->line_bytes /= 4;
-	fdf->a = &a;
-	fdf->b = &b;
+		(free_array(fdf->color_map), free_array(fdf->color_map), \
+		ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
 	draw_map(fdf);
 }

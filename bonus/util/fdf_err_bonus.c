@@ -6,34 +6,37 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:00:02 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:18:22 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/20 17:40:34 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/fdf_bonus.h"
+
+void	null_fdf(t_fdf *fdf)
+{
+	fdf->mlx = NULL;
+	fdf->win = NULL;
+	fdf->img = NULL;
+	fdf->map = NULL;
+	fdf->ui = NULL;
+	fdf->a = NULL;
+	fdf->b = NULL;
+}
+
+void	null_ui(t_ui *ui)
+{
+	ui->intro = NULL;
+	ui->iso_panel = NULL;
+	ui->ortho_panel = NULL;
+}
 
 int	exit_program(void *f)
 {
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)f;
-	free_array(fdf->map);
-	mlx_destroy_image(fdf->mlx, fdf->img->img);
-	mlx_destroy_image(fdf->mlx, fdf->ui->intro);
-	mlx_destroy_image(fdf->mlx, fdf->ui->iso_panel);
-	mlx_destroy_image(fdf->mlx, fdf->ui->ortho_panel);
 	mlx_destroy_window(fdf->mlx, fdf->win);
 	exit(EXIT_SUCCESS);
-}
-
-void	destroy(t_fdf *fdf)
-{
-	free_array(fdf->map);
-	mlx_destroy_image(fdf->mlx, fdf->img->img);
-	mlx_destroy_image(fdf->mlx, fdf->ui->intro);
-	mlx_destroy_image(fdf->mlx, fdf->ui->iso_panel);
-	mlx_destroy_image(fdf->mlx, fdf->ui->ortho_panel);
-	mlx_destroy_window(fdf->mlx, fdf->win);
 }
 
 void	free_array(int **array)
