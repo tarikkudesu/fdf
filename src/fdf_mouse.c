@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_mouse_bonus.c                                  :+:      :+:    :+:   */
+/*   fdf_mouse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:03:02 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/22 12:09:20 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/23 09:28:08 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
 int	handle_mouse_release(int button, int x, int y, t_fdf *fdf)
 {

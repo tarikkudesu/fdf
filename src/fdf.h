@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_bonus.h                                        :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:09:54 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/22 12:05:11 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/23 09:41:03 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_BONUS_H
-# define FDF_BONUS_H
+#ifndef FDF_H
+# define FDF_H
 
 # include "/usr/local/include/mlx.h"
-# include "fdf_struct_bonus.h"
+# include "fdf_struct.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_main_bonus.c                                   :+:      :+:    :+:   */
+/*   fdf_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:14:52 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/22 11:46:52 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/23 09:42:05 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
 void	init_window(t_fdf *fdf)
 {
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
+		(ft_putendl_fd(MLX_INIT, 2), exit(EXIT_FAILURE));
 	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, "fdf");
 	if (!fdf->win)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_WIN, 2), exit(EXIT_FAILURE));
+		(ft_putendl_fd(MLX_WIN, 2), exit(EXIT_FAILURE));
 }
 
 void	init_fdf(t_fdf *fdf, char *file_name)
@@ -59,13 +57,12 @@ void	make_it_3d(t_fdf *fdf)
 	init_window(fdf);
 	img.img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
 	if (!img.img)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_IMG, 2), mlx_destroy_window(fdf->mlx, fdf->win), \
+		(ft_putendl_fd(MLX_IMG, 2), mlx_destroy_window(fdf->mlx, fdf->win), \
 		exit(EXIT_FAILURE));
 	fdf->ui = &ui;
 	fdf->img = &img;
-	panel(fdf);
 	fill_image(fdf);
+	panel(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->ui->intro, 0, 0);
 	mlx_hook(fdf->win, 2, 0, &handle_key, fdf);
 	mlx_hook(fdf->win, 4, 0, &handle_mouse, fdf);

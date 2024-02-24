@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:26:46 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/18 17:26:24 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/23 09:27:56 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,9 @@ void	draw_line(t_fdf *fdf)
 	int	dy;
 
 	fdf->a->z = fdf->map[(fdf->a->y + fdf->height / 2)] \
-	[(fdf->a->x + fdf->width / 2)];
+	[(fdf->a->x + fdf->width / 2)] * fdf->z_incr;
 	fdf->b->z = fdf->map[(fdf->b->y + fdf->height / 2)] \
-	[(fdf->b->x + fdf->width / 2)];
+	[(fdf->b->x + fdf->width / 2)] * fdf->z_incr;
 	fdf->a->color = fdf->color_map[(fdf->a->y + fdf->height / 2)] \
 	[(fdf->a->x + fdf->width / 2)];
 	fdf->b->color = fdf->color_map[(fdf->b->y + fdf->height / 2)] \

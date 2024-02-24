@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_image_bonus.c                                  :+:      :+:    :+:   */
+/*   fdf_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:08:30 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/21 10:13:59 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/23 09:41:50 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
 void	set_point(int x, int y, t_fdf *fdf)
 {
@@ -73,8 +73,7 @@ void	fill_image(t_fdf *fdf)
 	fdf->img->addr = mlx_get_data_addr(fdf->img->img, &fdf->img->pixel_bits, \
 	&fdf->img->line_bytes, &fdf->img->endian);
 	if (!fdf->img->addr)
-		(free_array(fdf->color_map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
+		(ft_putendl_fd(MLX_ADD, 2), exit(EXIT_FAILURE));
 	draw_map(fdf);
 }
 
@@ -85,18 +84,15 @@ void	panel(t_fdf *fdf)
 	t_p	intro;
 
 	fdf->ui->iso_panel = mlx_xpm_file_to_image(fdf->mlx, \
-	"bonus/assets/iso_panel.xpm", &iso.h, &iso.w);
+	"assets/iso_panel.xpm", &iso.h, &iso.w);
 	if (!fdf->ui->iso_panel)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
+		(ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
 	fdf->ui->ortho_panel = mlx_xpm_file_to_image(fdf->mlx, \
-	"bonus/assets/ortho_panel.xpm", &ortho.h, &ortho.w);
+	"assets/ortho_panel.xpm", &ortho.h, &ortho.w);
 	if (!fdf->ui->ortho_panel)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
+		(ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
 	fdf->ui->intro = mlx_xpm_file_to_image(fdf->mlx, \
-	"bonus/assets/fdf.xpm", &intro.h, &intro.w);
+	"assets/fdf.xpm", &intro.h, &intro.w);
 	if (!fdf->ui->intro)
-		(free_array(fdf->map), free_array(fdf->color_map), \
-		ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
+		(ft_putendl_fd(MLX_XPM, 2), exit(EXIT_FAILURE));
 }

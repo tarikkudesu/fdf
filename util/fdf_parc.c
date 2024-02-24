@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:14:41 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/21 10:23:23 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/23 09:28:36 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int	get_width(char *file_name)
 
 void	read_file(char *file_name, t_fdf *fdf)
 {
-	fdf->height = get_height(file_name);
 	fdf->width = get_width(file_name);
+	fdf->height = get_height(file_name);
 	if (!fdf->height || !fdf->width)
 		(ft_putendl_fd(ERR_EMTY, 2), exit(EXIT_FAILURE));
 }

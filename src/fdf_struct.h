@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_struct_bonus.h                                 :+:      :+:    :+:   */
+/*   fdf_struct.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 15:17:27 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/22 11:15:02 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/02/23 09:41:09 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_STRUCT_BONUS_H
-# define FDF_STRUCT_BONUS_H
+#ifndef FDF_STRUCT_H
+# define FDF_STRUCT_H
 
 # define MLX_XPM	"Error : mlx_xpm_file_to_image error"
 # define ERR_ARG	"Error : Wrong number of arguments"
