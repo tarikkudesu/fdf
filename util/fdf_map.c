@@ -6,13 +6,13 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:38:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/23 09:28:31 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/07/30 12:47:21 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/fdf.h"
 
-int	get_value(int i, int j, t_fdf *fdf, char **line)
+static int	get_value(int i, int j, t_fdf *fdf, char **line)
 {
 	int	value;
 
@@ -33,14 +33,12 @@ int	get_value(int i, int j, t_fdf *fdf, char **line)
 	return (value);
 }
 
-int	*get_row(t_fdf *fdf, char *line, int j)
+static int	*get_row(t_fdf *fdf, char *line, int j)
 {
 	int		*row;
 	int		i;
 
-	row = malloc(sizeof(int) * fdf->width);
-	if (!row)
-		return (NULL);
+	row = talloc(sizeof(int) * fdf->width);
 	i = -1;
 	while (*line && *line == ' ')
 		line++;
@@ -55,7 +53,7 @@ int	*get_row(t_fdf *fdf, char *line, int j)
 	return (row);
 }
 
-int	**fill_map(t_fdf *fdf, int fd, int **map)
+static void	fill_map(t_fdf *fdf, int fd)
 {
 	int		i;
 	int		j;
@@ -67,29 +65,21 @@ int	**fill_map(t_fdf *fdf, int fd, int **map)
 		j = -1;
 		line = get_next_line(fd);
 		if (!line)
-			(free_array(map), close(fd), \
-			ft_putendl_fd(ERR_READ, 2), exit(EXIT_FAILURE));
-		*(map + i) = get_row(fdf, line, i);
-		if (!*(map + i))
-			(free_array(map), close(fd), \
-			ft_putendl_fd(ERR_MAL, 2), exit(EXIT_FAILURE));
-		free(line);
+			(close(fd), putendl_fd(ERR_READ, 2), exit(EXIT_FAILURE));
+		*(fdf->map + i) = get_row(fdf, line, i);
 	}
-	return (map);
 }
 
-int	**get_map(t_fdf *fdf, char *file_name)
+void get_map(t_fdf *fdf, char *file_name)
 {
-	int		**map;
 	int		fd;
 
-	map = malloc(sizeof(int *) * (fdf->height));
-	if (!map)
-		(perror(ERR_MAL), exit(EXIT_FAILURE));
+	fdf->map = talloc(sizeof(int *) * (fdf->height));
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		(free(map), perror(ERR_OPEN), exit(EXIT_FAILURE));
-	map = fill_map(fdf, fd, map);
+		terror(ERR_OPEN);
+	fill_map(fdf, fd);
+	if (!fdf->colors)
+		init_color_map_grediant(fdf);
 	close(fd);
-	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:26:46 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/23 09:27:56 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/07/30 12:51:00 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	my_mlx_pixel_put_big(int x, int y, t_fdf *fdf)
 	char	*addr;
 	int		pixel;
 
-	addr = fdf->img->addr;
-	pixel = y * fdf->img->line_bytes + x * 4;
+	addr = fdf->img.addr;
+	pixel = y * fdf->img.line_bytes + x * 4;
 	if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
 	{
 		addr[pixel + 0] = ((fdf->a->color >> 0) & 255) + \
@@ -41,8 +41,8 @@ void	my_mlx_pixel_put_less(int x, int y, t_fdf *fdf)
 	char	*addr;
 	int		pixel;
 
-	addr = fdf->img->addr;
-	pixel = y * fdf->img->line_bytes + x * 4;
+	addr = fdf->img.addr;
+	pixel = y * fdf->img.line_bytes + x * 4;
 	if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
 	{
 		addr[pixel + 0] = ((fdf->a->color >> 0) & 255) + \

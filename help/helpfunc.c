@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:10:49 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/23 09:27:05 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/07/30 12:03:48 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (*(s1 + i) - *(s2 + i));
 }
 
-void	ft_putendl_fd(char *s, int fd)
+void	putendl_fd(char *s, int fd)
 {
 	if (!s || fd < 0)
 		return ;

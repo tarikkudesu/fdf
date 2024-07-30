@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_color.c                                        :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:57:29 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/23 09:28:24 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/07/30 12:23:38 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/fdf.h"
 
-int	**init_color_map(t_fdf *fdf)
+void	init_color_map(t_fdf *fdf)
 {
-	int		**color_map;
 	int		i;
 	int		j;
 
 	i = -1;
 	j = -1;
-	color_map = malloc(sizeof(int *) * fdf->height);
-	if (!color_map)
-		(perror(ERR_MAL), exit(EXIT_FAILURE));
+	fdf->color_map = talloc(sizeof(int *) * fdf->height);
 	while (++i < fdf->height)
 	{
 		j = -1;
-		*(color_map + i) = malloc(sizeof(int) * fdf->width);
-		if (!*(color_map + i))
-			(free_array(fdf->color_map), perror(ERR_MAL), exit(EXIT_FAILURE));
+		*(fdf->color_map + i) = talloc(sizeof(int) * fdf->width);
 		while (++j < fdf->width)
-			*(*(color_map + i) + j) = 0x76EFF0;
+			*(*(fdf->color_map + i) + j) = 0x76EFF0;
 	}
-	return (color_map);
 }
 
 int	get_color(float normalized_z, int max_color, int min_color)

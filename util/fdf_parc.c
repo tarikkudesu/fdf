@@ -6,18 +6,18 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:14:41 by tamehri           #+#    #+#             */
-/*   Updated: 2024/02/23 09:28:36 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/07/30 12:54:16 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/fdf.h"
 
-int	check_filename(char *s)
+void	check_filename(char *s)
 {
 	int	i;
 
 	if (!*s)
-		return (0);
+		terror(ERR_FILE);
 	i = 0;
 	while (*(s + i))
 		i++;
@@ -25,13 +25,12 @@ int	check_filename(char *s)
 	while (*(s + i) != '.' && i >= -1)
 		i--;
 	if (i == -1)
-		return (0);
-	if (!ft_strcmp(s + i, ".fdf"))
-		return (1);
-	return (0);
+		terror(ERR_FILE);
+	if (ft_strcmp(s + i, ".fdf"))
+		terror(ERR_FILE);
 }
 
-int	get_height(char *file_name)
+static int	get_height(char *file_name)
 {
 	char	*line;
 	int		height;
@@ -45,18 +44,13 @@ int	get_height(char *file_name)
 	{
 		line = get_next_line(fd);
 		if (!line)
-		{
-			close (fd);
-			return (height);
-		}
-		free(line);
+			return (close (fd), height);
 		height++;
 	}
-	close(fd);
-	return (height);
+	return (close(fd), height);
 }
 
-int	word_count(char *line)
+static int	word_count(char *line)
 {
 	int	i;
 
@@ -75,7 +69,7 @@ int	word_count(char *line)
 	return (i);
 }
 
-int	get_width(char *file_name)
+static int	get_width(char *file_name)
 {
 	char	*line;
 	int		width;
@@ -87,13 +81,9 @@ int	get_width(char *file_name)
 	width = 0;
 	line = get_next_line(fd);
 	if (!line)
-	{
-		close(fd);
-		return (width);
-	}
+		return (close(fd), width);
 	width = word_count(line);
-	(free(line), close(fd));
-	return (width);
+	return (close(fd), width);
 }
 
 void	read_file(char *file_name, t_fdf *fdf)
@@ -101,5 +91,5 @@ void	read_file(char *file_name, t_fdf *fdf)
 	fdf->width = get_width(file_name);
 	fdf->height = get_height(file_name);
 	if (!fdf->height || !fdf->width)
-		(ft_putendl_fd(ERR_EMTY, 2), exit(EXIT_FAILURE));
+		terror(ERR_EMTY);
 }
