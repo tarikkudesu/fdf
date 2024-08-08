@@ -3,18 +3,9 @@
 
 # include "struct.h"
 # include "macros.h"
-# include <stdbool.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-# include <string.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include "../minilibx-linux/mlx.h"
-
-
 
 /* FUNCTIONS */
+void	my_mlx_pixel_put(int x, int y, unsigned int color);
 int	ft_atoi_base(char *line);
 int	ft_atoi(const char *str);
 int	ft_isdigit(int c);

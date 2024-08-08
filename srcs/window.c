@@ -24,11 +24,11 @@ static void	init_mlx(t_fdf *fdf) {
 void    initWindow( t_fdf *fdf ) {
 	init_mlx(fdf);
 	mlx_loop_hook(fdf->mlx.__mlx, update_frame, fdf);
-	mlx_hook(fdf->mlx.__win, ON_KEYUP, 0, key_up, fdf);
-	mlx_hook(fdf->mlx.__win, ON_KEYDOWN, 0, key_down, fdf);
-	mlx_hook(fdf->mlx.__win, ON_MOUSEMOVE, 0, mouse_move, fdf);
-	mlx_hook(fdf->mlx.__win, ON_MOUSEDOWN, 0, mouse_press, fdf);
-	mlx_hook(fdf->mlx.__win, ON_MOUSEUP, 0, mouse_release, fdf);
+	mlx_hook(fdf->mlx.__win, ON_KEYUP, 1L<<1, key_up, fdf);
+	mlx_hook(fdf->mlx.__win, ON_KEYDOWN, 1L<<0, key_down, fdf);
+	mlx_hook(fdf->mlx.__win, ON_MOUSEMOVE, 1L<<6, mouse_move, fdf);
+	mlx_hook(fdf->mlx.__win, ON_MOUSEDOWN, 1L<<2, mouse_press, fdf);
+	mlx_hook(fdf->mlx.__win, ON_MOUSEUP, 1L<<3, mouse_release, fdf);
 	mlx_hook(fdf->mlx.__win, ON_DESTROY, 0, exit_program, fdf);
 	mlx_loop(fdf->mlx.__mlx);
 }
