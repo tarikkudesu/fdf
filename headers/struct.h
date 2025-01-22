@@ -9,6 +9,13 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "../minilibx-linux/mlx.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <math.h>
+# include <errno.h>
 
 typedef struct s_fdf    t_fdf;
 typedef struct s_map    t_map;
@@ -38,6 +45,8 @@ struct s_keys
 	bool	down;
 	bool	left;
 	bool	up;
+	bool	zoom_in;
+	bool	zoom_out;
 	bool	esc;
 	bool	rx;
 	bool	rrx;
@@ -47,6 +56,9 @@ struct s_keys
 	bool	rrz;
 	bool	ez;
 	bool	dz;
+	bool	t;
+	bool	f;
+	bool	r;
 };
 
 struct s_map
@@ -69,7 +81,7 @@ struct s_mlx
 struct s_image
 {
 	void	*__img;
-	int		*__addr;
+	char	*__addr;
 	int		pixel_bits;
 	int		line_bytes;
 	int		width;
@@ -99,17 +111,35 @@ struct s_heap
 
 struct s_fdf
 {
+    t_heap  	*heap;
     t_map   	**map;
     int     	height;
     int     	width;
-    t_heap  	*heap;
-    t_image 	image;
 	t_angles	angles;
+    t_image 	image;
+    t_image 	intro;
+    t_image 	ortho;
+    t_image 	iso;
 	t_keys		keys;
     t_mlx   	mlx;
     int     	max;
     int     	min;
 	bool		pressed;
+
+	bool		isoView;
+
+	float		alpha;
+	float		tetha;
+	float		gamma;
+	int			zoom;
+	float		z_incr;
+	int			x_translate;
+	int			y_translate;
+
+	t_map		a;
+	t_map		b;
+	int			x;
+	int			y;
 };
 
 #endif // STRUCT_H_

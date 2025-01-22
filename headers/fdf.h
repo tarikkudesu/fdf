@@ -5,6 +5,9 @@
 # include "macros.h"
 
 /* FUNCTIONS */
+void update_hooks(t_fdf *fdf);
+void	draw_line(t_fdf *fdf);
+void	set_coordinnates(t_fdf *fdf);
 void	my_mlx_pixel_put(int x, int y, unsigned int color);
 int	ft_atoi_base(char *line);
 int	ft_atoi(const char *str);
