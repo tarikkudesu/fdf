@@ -31,5 +31,6 @@ void	heap_addback(t_heap **lst, t_heap *new);
 t_heap	*heap_new(void *content);
 void    getMap( t_fdf *fdf, char *fileName );
 void    initFdf( t_fdf *fdf, char *fileName );
+float perc(float c1, float c2, float c);
 
 #endif // FDF_H_

@@ -12,10 +12,13 @@ int mouse_release(int button, int x, int y, t_fdf *fdf)
 
 int mouse_move(int x, int y, t_fdf *fdf)
 {
-	// puts("mouse move");
-	(void)x;
-	(void)y;
-	(void)fdf;
+	if (fdf->pressed && fdf->isoView)
+	{
+		fdf->gamma += (fdf->x - x) * 0.002;
+		fdf->alpha += (fdf->y - y) * 0.002;
+	}
+	fdf->x = x;
+	fdf->y = y;
 	return (0);
 }
 
@@ -32,7 +35,6 @@ void reset_view(t_fdf *fdf)
 
 int mouse_press(int button, int x, int y, t_fdf *fdf)
 {
-	printf("%d %d\n", x, y);
 	if (button == 1 && x > 100 && x < 300 && y > 1100 && y < 1150)
 		reset_view(fdf);
 	if (button == 1 && x > 200 && x < 400 && y > 300 && y < 350)
@@ -46,14 +48,10 @@ int mouse_press(int button, int x, int y, t_fdf *fdf)
 		reset_view(fdf);
 	}
 	if (button == 4)
-		fdf->keys.zoom_in = false;
-	if (button == 5)
-		fdf->keys.zoom_out = false;
+		fdf->zoom += 2;
+	if (button == 5 && fdf->zoom > 1)
+		fdf->zoom -= 2;
 	if (button == 1)
-		fdf->pressed = 1;
-	fdf->x = x;
-	fdf->y = y;
-	if (button == 1)
-		fdf->pressed = 1;
+		fdf->pressed = true;
 	return (0);
 }

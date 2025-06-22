@@ -14,20 +14,13 @@ void my_mlx_pixel_put_big(int x, int y, t_fdf *fdf)
 
     addr = fdf->image.__addr;
     pixel = y * fdf->image.line_bytes + x * 4;
-    if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
+    if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
     {
-        // addr[pixel + 0] = ((fdf->a.color >> 0) & 255) +
-        //                   (((fdf->b.color >> 0) & 255) - ((fdf->a.color >> 0) & 255)) * perc(fdf->a.y, fdf->b.y, y);
-        // addr[pixel + 1] = ((fdf->a.color >> 8) & 255) +
-        //                   (((fdf->b.color >> 8) & 255) - ((fdf->a.color >> 8) & 255)) * perc(fdf->a.y, fdf->b.y, y);
-        // addr[pixel + 2] = ((fdf->a.color >> 16) & 255) +
-        //                   (((fdf->b.color >> 16) & 255) - ((fdf->a.color >> 16) & 255)) * perc(fdf->a.y, fdf->b.y, y);
-        // addr[pixel + 3] = ((fdf->a.color >> 24) & 255) +
-        //                   (((fdf->b.color >> 24) & 255) - ((fdf->a.color >> 24) & 255)) * perc(fdf->a.y, fdf->b.y, y);
-        addr[pixel + 0] = (0xffff >> 0 & 255);
-        addr[pixel + 1] = (0xffff >> 8 & 255);
-        addr[pixel + 2] = (0xffff >> 16 & 255);
-        addr[pixel + 3] = (0xffff >> 24 & 255);
+		for (int i = 0; i <= 4; i++) {
+			int b = ((fdf->b.color >> i * 8) & 255);
+			int a = ((fdf->a.color >> i * 8) & 255);
+			addr[pixel + i] = a + (b - a) * perc(fdf->a.y, fdf->b.y, y);
+		}
     }
 }
 
@@ -38,20 +31,13 @@ void my_mlx_pixel_put_less(int x, int y, t_fdf *fdf)
 
     addr = fdf->image.__addr;
     pixel = y * fdf->image.line_bytes + x * 4;
-    if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
+    if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
     {
-        addr[pixel + 0] = (0xffff >> 0 & 255);
-        addr[pixel + 1] = (0xffff >> 8 & 255);
-        addr[pixel + 2] = (0xffff >> 16 & 255);
-        addr[pixel + 3] = (0xffff >> 24 & 255);
-        // addr[pixel + 0] = ((fdf->a.color >> 0) & 255) +
-        //                   (((fdf->b.color >> 0) & 255) - ((fdf->a.color >> 0) & 255)) * perc(fdf->a.x, fdf->b.x, x);
-        // addr[pixel + 1] = ((fdf->a.color >> 8) & 255) +
-        //                   (((fdf->b.color >> 8) & 255) - ((fdf->a.color >> 8) & 255)) * perc(fdf->a.x, fdf->b.x, x);
-        // addr[pixel + 2] = ((fdf->a.color >> 16) & 255) +
-        //                   (((fdf->b.color >> 16) & 255) - ((fdf->a.color >> 16) & 255)) * perc(fdf->a.x, fdf->b.x, x);
-        // addr[pixel + 3] = ((fdf->a.color >> 24) & 255) +
-        //                   (((fdf->b.color >> 24) & 255) - ((fdf->a.color >> 24) & 255)) * perc(fdf->a.x, fdf->b.x, x);
+		for (int i = 0; i <= 4; i++) {
+			int b = ((fdf->b.color >> i * 8) & 255);
+			int a = ((fdf->a.color >> i * 8) & 255);
+			addr[pixel + i] = a + (b - a) * perc(fdf->a.y, fdf->b.y, y);
+		}
     }
 }
 

@@ -64,10 +64,9 @@ void    initFdf( t_fdf *fdf, char *fileName ) {
 	fdf->x_translate = 0;
 	fdf->y_translate = 0;
 	fdf->isoView = true;
-	// fdf->pressed = false;
+	fdf->pressed = false;
 	fdf->z_incr = 1;
 	fdf->gamma = 0;
 	fdf->alpha = 0;
 	fdf->tetha = 0;
-    printf("%d %d\n", fdf->width, fdf->height);
 }
